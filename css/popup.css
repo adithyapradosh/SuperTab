@@ -1,0 +1,102 @@
+:root {
+    --color-background-h: 0;
+    --color-background-s: 0%;
+    --color-background-l: 18%;
+
+    --color-primary-h: 0;
+    --color-primary-s: 0%;
+    --color-primary-l: 25%;
+
+    --color-text-h: 0;
+    --color-text-s: 0%;
+    --color-text-l: 90%;
+
+    font-size: calc(14 / 16 * 1rem);
+}
+
+html,
+body {
+    width: 22rem;
+    margin: 0;
+    background-color: hsl(
+        var(--color-background-h),
+        var(--color-background-s),
+        calc(var(--color-background-l) + 2%)
+    );
+    color: hsl(var(--color-text-h), var(--color-text-s), var(--color-text-l));
+}
+
+form {
+    padding: 1rem;
+}
+form > span {
+    display: block;
+    font-size: calc(15 / 14 * 1rem);
+    margin-bottom: 0.8rem;
+}
+
+.form-info > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.form-info label {
+    font-size: calc(13 / 14 * 1rem);
+}
+
+.form-info input {
+    box-sizing: border-box;
+    width: 15rem;
+    padding: 0.5rem;
+    color: hsl(var(--color-text-h), var(--color-text-s), var(--color-text-l));
+    background-color: hsl(
+        var(--color-background-h),
+        var(--color-background-s),
+        calc(var(--color-background-l) - 5%)
+    );
+    border: 1px solid
+        hsl(
+            var(--color-primary-h),
+            var(--color-primary-s),
+            var(--color-primary-l)
+        );
+    border-radius: 5px;
+    outline: none;
+}
+.form-info input:focus {
+    box-shadow: 0 0 0 2px
+        hsl(
+            var(--color-primary-h),
+            var(--color-primary-s),
+            var(--color-primary-l)
+        );
+}
+
+.form-action {
+    display: flex;
+    justify-content: end;
+}
+
+.form-action > button {
+    padding: 0.5rem 1rem;
+    background: none;
+    color: inherit;
+    font-size: 1rem;
+    border: 2px solid
+        hsl(
+            var(--color-primary-h),
+            var(--color-primary-s),
+            var(--color-primary-l)
+        );
+    border-radius: 7px;
+    cursor: pointer;
+}
+.form-action > button:hover {
+    background-color: hsl(
+        var(--color-primary-h),
+        var(--color-primary-s),
+        var(--color-primary-l)
+    );
+}

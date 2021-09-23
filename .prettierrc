@@ -1,0 +1,36 @@
+{
+  "overrides": [
+    {
+      "files": "*.html",
+      "options": {
+        "tabWidth": 4,
+        "printWidth": 100
+      }
+    },
+    {
+      "files": "*.css",
+      "options": {
+        "tabWidth": 4,
+        "printWidth": 80
+      }
+    },
+    {
+      "files": "*.js",
+      "options": {
+        "semi": false,
+        "singleQuote": true,
+        "useTabs": true,
+        "tabWidth": 4,
+        "bracketSpacing": true,
+        "printWidth": 100
+      }
+    },
+    {
+      "files": "*.json",
+      "options": {
+        "tabWidth": 2,
+        "printWidth": 80
+      }
+    }
+  ]
+}
