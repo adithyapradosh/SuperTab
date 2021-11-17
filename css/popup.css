@@ -17,6 +17,7 @@
 html,
 body {
     width: 22rem;
+    height: 12rem;
     margin: 0;
     background-color: hsl(
         var(--color-background-h),
@@ -77,13 +78,14 @@ form > span {
 .form-action {
     display: flex;
     justify-content: end;
+    font-size: 1rem;
 }
 
 .form-action > button {
     padding: 0.5rem 1rem;
     background: none;
     color: inherit;
-    font-size: 1rem;
+    /* font-size: 1rem; */
     border: 2px solid
         hsl(
             var(--color-primary-h),
