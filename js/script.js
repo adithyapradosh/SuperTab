@@ -2,19 +2,16 @@ $(document).ready(function () {
 	if (!localStorage.nodeObject) {
 		loadNodeObject()
 	}
-	$('body').append(
-		$('<div>').addClass('shortcuts'),
-		$('<div>').addClass('clock'),
-		$('<button>').addClass('settings-icon'),
-		$('<div>').addClass('settings-pane')
-	)
 
 	/* Clock */
-	$('.clock').append($('<div></div').addClass('time'), $('<div></div>').addClass('day'))
+	$('body').append(
+		$('<div>').addClass('clock').append($('<div>').addClass('time'), $('<div>').addClass('day'))
+	)
 	clockUpdate()
 	setInterval(clockUpdate, 1000)
 
 	/* Shortcuts */
+	$('body').append($('<div>').addClass('shortcuts'))
 	loadShortcuts()
 
 	// Drag Shortcuts
@@ -33,9 +30,10 @@ $(document).ready(function () {
 	})
 
 	/* Settings */
-	$('.settings-icon').html(makeNode('settings_icon', localStorage.nodeObject))
-	$('.settings-pane').html(makeNode('settings_nav', localStorage.nodeObject))
-	$('.settings-pane').append($('<div>').addClass('settings-options'))
+	$('body').append(
+		makeNode('settings_icon', localStorage.nodeObject),
+		makeNode('settings_pane', localStorage.nodeObject),
+	)
 	$('.settings-options').html(makeNode('appearance_tab', localStorage.nodeObject))
 	$('#appearance_tab').addClass('selected')
 
@@ -70,7 +68,7 @@ $(document).ready(function () {
 			}
 		}
 	})
-	// Open settings with Settings icon
+	// Open settings with settings icon
 	$('.settings-icon').click(function () {
 		if ($('.settings-pane').css('display') == 'none') {
 			openSettings()
@@ -189,7 +187,7 @@ function updateShortcuts() {
 	localStorage.shortcuts = JSON.stringify(shortcuts)
 }
 
-//Create DOM elements
+// Create DOM elements
 function makeNode(node, key) {
 	if (key) {
 		key = JSON.parse(key)
@@ -243,7 +241,7 @@ function makeNode(node, key) {
 	return element
 }
 
-//Load Contents of settings"
+// Define DOM elements
 function loadNodeObject() {
 	/*
         tag      : String
@@ -253,65 +251,79 @@ function loadNodeObject() {
     */
 	localStorage.nodeObject = JSON.stringify({
 		settings_icon: {
-			tag: 'svg',
-			attr: {
-				width: '100%',
-				xmlns: 'http://www.w3.org/2000/svg',
-				x: '0px',
-				y: '0px',
-				viewBox: '0 0 32 32',
-			},
+			tag: 'button',
+			cls: 'settings-icon',
 			child: {
-				tag: 'path',
+				tag: 'svg',
 				attr: {
-					d: 'M29.6,12.7c-0.1-0.5-0.6-0.8-1.1-0.8c-1.2,0.2-2.4-0.4-3-1.5c-0.6-1-0.5-2.4,0.2-3.3c0.3-0.4,0.3-1-0.1-1.3 C24,4.3,22.1,3.2,20,2.6c-0.5-0.1-1,0.1-1.2,0.6C18.3,4.3,17.2,5,16,5s-2.3-0.7-2.8-1.8C13,2.7,12.5,2.4,12,2.6 C9.9,3.2,8,4.3,6.4,5.9C6,6.2,6,6.8,6.3,7.2c0.7,1,0.8,2.3,0.2,3.3c-0.6,1-1.8,1.6-3,1.5c-0.5-0.1-1,0.3-1.1,0.8 C2.1,13.8,2,14.9,2,16s0.1,2.2,0.4,3.3C2.5,19.8,3,20.1,3.5,20c1.2-0.2,2.4,0.4,3,1.5c0.6,1,0.5,2.4-0.2,3.3c-0.3,0.4-0.3,1,0.1,1.3 c1.6,1.5,3.6,2.7,5.7,3.3c0.5,0.1,1-0.1,1.2-0.6c0.5-1.1,1.6-1.8,2.8-1.8s2.3,0.7,2.8,1.8c0.2,0.4,0.5,0.6,0.9,0.6 c0.1,0,0.2,0,0.3,0c2.1-0.6,4.1-1.8,5.7-3.3c0.4-0.4,0.4-0.9,0.1-1.3c-0.7-1-0.8-2.3-0.2-3.3c0.6-1,1.8-1.6,3-1.5 c0.5,0.1,1-0.3,1.1-0.8c0.3-1.1,0.4-2.2,0.4-3.3S29.9,13.8,29.6,12.7z M16,20c-2.2,0-4-1.8-4-4s1.8-4,4-4s4,1.8,4,4S18.2,20,16,20z',
+					width: '100%',
+					xmlns: 'http://www.w3.org/2000/svg',
+					x: '0px',
+					y: '0px',
+					viewBox: '0 0 32 32',
+				},
+				child: {
+					tag: 'path',
+					attr: {
+						d: 'M29.6,12.7c-0.1-0.5-0.6-0.8-1.1-0.8c-1.2,0.2-2.4-0.4-3-1.5c-0.6-1-0.5-2.4,0.2-3.3c0.3-0.4,0.3-1-0.1-1.3 C24,4.3,22.1,3.2,20,2.6c-0.5-0.1-1,0.1-1.2,0.6C18.3,4.3,17.2,5,16,5s-2.3-0.7-2.8-1.8C13,2.7,12.5,2.4,12,2.6 C9.9,3.2,8,4.3,6.4,5.9C6,6.2,6,6.8,6.3,7.2c0.7,1,0.8,2.3,0.2,3.3c-0.6,1-1.8,1.6-3,1.5c-0.5-0.1-1,0.3-1.1,0.8 C2.1,13.8,2,14.9,2,16s0.1,2.2,0.4,3.3C2.5,19.8,3,20.1,3.5,20c1.2-0.2,2.4,0.4,3,1.5c0.6,1,0.5,2.4-0.2,3.3c-0.3,0.4-0.3,1,0.1,1.3 c1.6,1.5,3.6,2.7,5.7,3.3c0.5,0.1,1-0.1,1.2-0.6c0.5-1.1,1.6-1.8,2.8-1.8s2.3,0.7,2.8,1.8c0.2,0.4,0.5,0.6,0.9,0.6 c0.1,0,0.2,0,0.3,0c2.1-0.6,4.1-1.8,5.7-3.3c0.4-0.4,0.4-0.9,0.1-1.3c-0.7-1-0.8-2.3-0.2-3.3c0.6-1,1.8-1.6,3-1.5 c0.5,0.1,1-0.3,1.1-0.8c0.3-1.1,0.4-2.2,0.4-3.3S29.9,13.8,29.6,12.7z M16,20c-2.2,0-4-1.8-4-4s1.8-4,4-4s4,1.8,4,4S18.2,20,16,20z',
+					},
 				},
 			},
 		},
-		settings_nav: {
-			tag: 'nav',
-			cls: 'settings-nav',
-			child: {
-				tag: 'ul',
-				child: [
-					{
-						tag: 'li',
-						child: {
-							tag: 'button',
-							cls: 'settings-tab',
-							attr: {
-								id: 'appearance_tab',
-								tabindex: 0,
+		settings_pane: {
+			tag: 'div',
+			cls: 'settings-pane',
+			child: [
+				{
+					tag: 'nav',
+					cls: 'settings-nav',
+					child: {
+						tag: 'ul',
+						child: [
+							{
+								tag: 'li',
+								child: {
+									tag: 'button',
+									cls: 'settings-tab',
+									attr: {
+										id: 'appearance_tab',
+										tabindex: 0,
+									},
+									child: '🎨 &nbsp Appearance',
+								},
 							},
-							child: '🎨 &nbsp Appearance',
-						},
-					},
-					{
-						tag: 'li',
-						child: {
-							tag: 'button',
-							cls: 'settings-tab',
-							attr: {
-								id: 'bookmarks_tab',
-								tabindex: 0,
+							{
+								tag: 'li',
+								child: {
+									tag: 'button',
+									cls: 'settings-tab',
+									attr: {
+										id: 'bookmarks_tab',
+										tabindex: 0,
+									},
+									child: '🚩 &nbsp Bookmarks',
+								},
 							},
-							child: '🚩 &nbsp Bookmarks',
-						},
-					},
-					{
-						tag: 'li',
-						child: {
-							tag: 'button',
-							cls: 'settings-tab',
-							attr: {
-								id: 'shortcuts_tab',
-								tabindex: 0,
+							{
+								tag: 'li',
+								child: {
+									tag: 'button',
+									cls: 'settings-tab',
+									attr: {
+										id: 'shortcuts_tab',
+										tabindex: 0,
+									},
+									child: '🏁 &nbsp Shortcuts	',
+								},
 							},
-							child: '🏁 &nbsp Shortcuts	',
-						},
+						],
 					},
-				],
-			},
+				},
+				{
+					tag: 'div',
+					cls: 'settings-options',
+				},
+			],
 		},
 		appearance_tab: {
 			tag: 'div',
