@@ -21,8 +21,10 @@ $(document).ready(function () {
 		$.event.addProp('dataTransfer')
 		event.dataTransfer.setData('Text', event.target.id)
 		$('.shortcut-trash').show()
+		$(this).css('opacity', '0.01')
 	})
 	$('.shortcut').on('dragend', function () {
+		$(this).css('opacity', '1')
 		$(this).removeAttr('id')
 		$('.shortcut-trash').hide()
 		updateShortcuts()
@@ -38,20 +40,22 @@ $(document).ready(function () {
 		event.preventDefault()
 	})
 	var counter = 0
-	$('.shortcut-trash, .shortcut-trash *').on('dragenter', function (event) {
+	$('.shortcut-trash').on('dragenter', function (event) {
 		counter++
-		$('.shortcut-trash').css(
-			'background-color',
-			'hsl(var(--color-background-h),var(--color-background-s),calc(var(--color-background-l) + 17%),0.5)'
-		)
+		$('.shortcut-trash').css({
+			'background-color':
+				'hsl(var(--color-background-h),var(--color-background-s),calc(var(--color-background-l) + 17%),0.5)',
+			fill: 'hsl(var(--color-primary-h),var(--color-primary-s),var(--color-primary-l),0.75)',
+		})
 	})
-	$('.shortcut-trash, .shortcut-trash *').on('dragleave', function (event) {
+	$('.shortcut-trash').on('dragleave', function (event) {
 		counter--
 		if (counter === 0) {
-			$('.shortcut-trash').css(
-				'background-color',
-				'hsl(var(--color-background-h),var(--color-background-s),calc(var(--color-background-l) + 15%),0.25)'
-			)
+			$('.shortcut-trash').css({
+				'background-color':
+					'hsl(var(--color-background-h),var(--color-background-s),calc(var(--color-background-l) + 15%),0.25)',
+				fill: 'hsl(var(--color-primary-h),var(--color-primary-s),var(--color-primary-l),0.5)',
+			})
 		}
 	})
 	$('.shortcut-trash').on('drop', function (event) {
