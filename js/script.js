@@ -60,6 +60,7 @@ $(document).ready(function () {
 	})
 	$('.shortcut-trash').on('drop', function (event) {
 		$('#dragging').remove()
+		$('.shortcut-trash').hide()
 		updateShortcuts()
 	})
 
