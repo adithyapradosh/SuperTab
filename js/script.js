@@ -13,26 +13,56 @@ $(document).ready(function () {
 	/* Shortcuts */
 	$('body').append($('<div>').addClass('shortcuts'))
 	loadShortcuts()
+	$('body').append(makeNode('shortcut_trash', localStorage.nodeObject))
 
 	// Drag Shortcuts
-	$('.shortcut').on('dragstart', function () {
-		$(this).addClass('dragging')
+	$('.shortcut').on('dragstart', function (event) {
+		$(this).attr('id', 'dragging')
+		$.event.addProp('dataTransfer')
+		event.dataTransfer.setData('Text', event.target.id)
+		$('.shortcut-trash').show()
 	})
 	$('.shortcut').on('dragend', function () {
-		$(this).removeClass('dragging')
+		$(this).removeAttr('id')
+		$('.shortcut-trash').hide()
 		updateShortcuts()
 	})
 	$('.shortcuts').on('dragover', function (event) {
 		event.preventDefault()
 	})
 	$('.shortcut').on('dragover', function () {
-		$('.dragging').insertBefore($(this))
+		$('#dragging').insertBefore($(this))
+	})
+	//  Shortcut Trash
+	$('.shortcut-trash').on('dragover', function (event) {
+		event.preventDefault()
+	})
+	var counter = 0
+	$('.shortcut-trash, .shortcut-trash *').on('dragenter', function (event) {
+		counter++
+		$('.shortcut-trash').css(
+			'background-color',
+			'hsl(var(--color-background-h),var(--color-background-s),calc(var(--color-background-l) + 17%),0.5)'
+		)
+	})
+	$('.shortcut-trash, .shortcut-trash *').on('dragleave', function (event) {
+		counter--
+		if (counter === 0) {
+			$('.shortcut-trash').css(
+				'background-color',
+				'hsl(var(--color-background-h),var(--color-background-s),calc(var(--color-background-l) + 15%),0.25)'
+			)
+		}
+	})
+	$('.shortcut-trash').on('drop', function (event) {
+		$('#dragging').remove()
+		updateShortcuts()
 	})
 
 	/* Settings */
 	$('body').append(
 		makeNode('settings_icon', localStorage.nodeObject),
-		makeNode('settings_pane', localStorage.nodeObject),
+		makeNode('settings_pane', localStorage.nodeObject)
 	)
 	$('.settings-options').html(makeNode('appearance_tab', localStorage.nodeObject))
 	$('#appearance_tab').addClass('selected')
@@ -250,6 +280,35 @@ function loadNodeObject() {
         child    : String | Object | Array[Object]
     */
 	localStorage.nodeObject = JSON.stringify({
+		shortcut_trash: {
+			tag: 'div',
+			cls: 'shortcut-trash',
+			child: {
+				tag: 'svg',
+				attr: {
+					width: '100%',
+					xmlns: 'http://www.w3.org/2000/svg',
+					x: '0px',
+					y: '0px',
+					viewBox: '0 0 24 24',
+				},
+				child: [
+					{
+						tag: 'path',
+						attr: {
+							d: 'M0 0h24v24H0V0z',
+							fill: 'none',
+						},
+					},
+					{
+						tag: 'path',
+						attr: {
+							d: 'M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z',
+						},
+					},
+				],
+			},
+		},
 		settings_icon: {
 			tag: 'button',
 			cls: 'settings-icon',

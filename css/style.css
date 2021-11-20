@@ -118,6 +118,7 @@ body {
     );
     border-radius: 25%;
     transition: background-color 250ms ease-in, transform 250ms ease-in;
+    cursor: pointer;
 }
 .shortcut:hover {
     background-color: hsl(
@@ -165,13 +166,36 @@ body {
         var(--color-primary-l)
     );
     text-decoration: none;
-    user-select: none;
+    pointer-events: none;
 }
 
 .shortcut a img {
     min-width: 2.5rem;
     width: 2.5vw;
-    user-select: none;
+    pointer-events: none;
+}
+
+.shortcut-trash {
+    display: none;
+    position: fixed;
+    bottom: 4vh;
+    right: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: hsl(
+        var(--color-background-h),
+        var(--color-background-s),
+        calc(var(--color-background-l) + 15%),
+        0.25
+    );
+    fill: hsl(
+        var(--color-primary-h),
+        var(--color-primary-s),
+        var(--color-primary-l),
+        0.5
+    );
 }
 
 /* Clock */
