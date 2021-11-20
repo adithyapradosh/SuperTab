@@ -198,11 +198,15 @@ function loadShortcuts() {
 			} else {
 				img = $('<img>').attr('src', shortcuts[i].icon)
 			}
-			var a = $('<a>').attr({ href: shortcuts[i].url, tabindex: -1 }).html(img)
-			var div = $('<div>')
+			var div = $('<a>')
 				.addClass('shortcut')
-				.attr({ draggable: 'true', name: shortcuts[i].name, tabindex: 0 })
-				.html(a)
+				.attr({
+					draggable: 'true',
+					name: shortcuts[i].name,
+					tabindex: 0,
+					href: shortcuts[i].url,
+				})
+				.html(img)
 			$('.shortcuts').append(div)
 		}
 	}
@@ -214,8 +218,8 @@ function updateShortcuts() {
 	$('.shortcut').each(function (i) {
 		shortcuts[i] = {
 			name: $(this).attr('name'),
-			url: $(this).children().attr('href'),
-			icon: $(this).children().children().attr('src'),
+			url: $(this).attr('href'),
+			icon: $(this).children().attr('src'),
 		}
 	})
 	localStorage.shortcuts = JSON.stringify(shortcuts)
