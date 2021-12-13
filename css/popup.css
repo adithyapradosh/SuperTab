@@ -77,15 +77,21 @@ form > span {
 
 .form-action {
     display: flex;
+    height: 2.5rem;
     justify-content: end;
+    font-size: 1rem;
+}
+
+.form-action > span {
+    padding: 0.5rem 1rem;
     font-size: 1rem;
 }
 
 .form-action > button {
     padding: 0.5rem 1rem;
     background: none;
+    font-size: 1rem;
     color: inherit;
-    /* font-size: 1rem; */
     border: 2px solid
         hsl(
             var(--color-primary-h),

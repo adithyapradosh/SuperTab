@@ -36,7 +36,7 @@ function checkStatus() {
 					flag = 1
 				}
 				if (flag == 1) {
-					$('.form-action').html('Added')
+					$('.form-action').html($('<span>').html('Added'))
 				} else {
 					$('.form-action').html(
 						$('<button>').attr({ id: 'submit', type: 'button' }).html('Done')
