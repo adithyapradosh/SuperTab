@@ -1,6 +1,11 @@
 $(document).ready(function () {
+	// Load DOM data
 	if (!localStorage.nodeObject) {
 		loadNodeObject()
+	}
+	// Load Background Image
+	if (localStorage.backgroundImage) {
+		$('body').css('background-image', localStorage.backgroundImage)
 	}
 
 	/* Clock */
@@ -92,14 +97,12 @@ $(document).ready(function () {
 			if (current_tab.split('-')[0] == last_tab.split('_')[0]) {
 				event.preventDefault()
 				$('#' + first_tab).focus()
-				console.log('event 1')
 			}
 		}
 		if (event.which == 9 && event.shiftKey && $('.settings-pane').css('display') != 'none') {
 			if (current_tab.split('-')[0] == first_tab.split('_')[0]) {
 				event.preventDefault()
 				$('#' + last_tab).focus()
-				console.log('event 2')
 			}
 		}
 	})
@@ -149,6 +152,50 @@ $(document).ready(function () {
 		$(this).addClass('selected')
 		$('.settings-options > *').css('display', 'none')
 		$('.settings-options').html(makeNode(event.target.id, localStorage.nodeObject))
+
+		if (event.target.id == 'appearance_tab') {
+			bkgImgBtnStatus()
+		}
+	})
+
+	/* Settings Functions */
+
+	//Change Background Image
+	function bkgImgBtnStatus() {
+		if (localStorage.backgroundImage) {
+			$('#setting-background-image button').html('Remove')
+		} else {
+			$('#setting-background-image button').html('Upload Image')
+		}
+	}
+	$(document).on('change', '#input-background-image', function () {
+		if (this.files && this.files[0]) {
+			var img = document.createElement('img')
+			img.src = URL.createObjectURL(this.files[0])
+			img.onload = function () {
+				var canvas = document.createElement('canvas')
+				var context = canvas.getContext('2d')
+				canvas.height = this.naturalHeight
+				canvas.width = this.naturalWidth
+				context.drawImage(this, 0, 0)
+				var url = 'url(' + canvas.toDataURL('image/jpeg') + ')'
+				$('body').css('background-image', url)
+				localStorage.backgroundImage = url
+				bkgImgBtnStatus()
+			}
+			document.querySelector('#input-background-image').value = ''
+			console.log(document.querySelector('#input-background-image').value)
+		}
+	})
+
+	$(document).on('click', '#setting-background-image button', function () {
+		if (localStorage.backgroundImage) {
+			$('body').css('background-image', 'none')
+			delete localStorage.backgroundImage
+			bkgImgBtnStatus()
+		} else {
+			$('#input-background-image').click()
+		}
 	})
 })
 
@@ -276,6 +323,11 @@ function makeNode(node, key) {
 				})
 			}
 		}
+		if (node.css) {
+			$.each(node.css, function (i, val) {
+				element.css(i, val)
+			})
+		}
 	}
 	return element
 }
@@ -287,6 +339,7 @@ function loadNodeObject() {
         cls      : String | Array[String]
         attr     : Object
         child    : String | Object | Array[Object]
+		css		 : Object
     */
 	localStorage.nodeObject = JSON.stringify({
 		shortcut_trash: {
@@ -401,33 +454,21 @@ function loadNodeObject() {
 				cls: 'form',
 				child: {
 					tag: 'div',
-					cls: 'form',
+					attr: { id: 'setting-background-image' },
+					css: { 'align-items': 'center' },
 					child: [
 						{
-							tag: 'label',
-							attr: { for: 'alignment-shortcuts' },
-							child: 'Align Shortcuts',
+							tag: 'div',
+							child: 'Background Image',
 						},
 						{
-							tag: 'select',
-							attr: { id: 'align-shortcuts', name: 'alignments' },
-							child: [
-								{
-									tag: 'option',
-									attr: { value: '' },
-									child: 'Center',
-								},
-								{
-									tag: 'option',
-									attr: { value: '' },
-									child: 'Left',
-								},
-								{
-									tag: 'option',
-									attr: { value: '' },
-									child: 'Right',
-								},
-							],
+							tag: 'button',
+							attr: { type: 'button' },
+						},
+						{
+							tag: 'input',
+							attr: { id: 'input-background-image', type: 'file', accept: 'image/*' },
+							css: { display: 'none' },
 						},
 					],
 				},
