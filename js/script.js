@@ -81,7 +81,7 @@ $(document).ready(function () {
 	function openSettings() {
 		$('.shortcut').attr({ tabindex: -1 })
 		$('.settings-icon').attr({ tabindex: -1 })
-		$('.settings-pane').css('display', 'flex').animate({ opacity: 1 }, 150)
+		$('.settings-pane').css({display: 'flex', opacity: 1})
 		$('.selected').focus()
 	}
 	function closeSettings() {
