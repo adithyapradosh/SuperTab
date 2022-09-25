@@ -9,9 +9,7 @@ $(document).ready(function () {
 	}
 
 	/* Clock */
-	$('body').append(
-		makeNode('clockp', localStorage.nodeObject)
-	)
+	makeNode('body', 'clock', localStorage.nodeObject)
 	clockUpdate()
 	setInterval(clockUpdate, 1000)
 
@@ -40,7 +38,7 @@ $(document).ready(function () {
 	})
 
 	//  Shortcut Trash
-	$('body').append(makeNode('shortcut_trash', localStorage.nodeObject))
+	makeNode('body', 'shortcut_trash', localStorage.nodeObject)
 	$('.shortcut-trash').on('dragover', function (event) {
 		event.preventDefault()
 	})
@@ -70,11 +68,9 @@ $(document).ready(function () {
 	})
 
 	/* Settings */
-	$('body').append(
-		makeNode('settings_icon', localStorage.nodeObject),
-		makeNode('settings_pane', localStorage.nodeObject)
-	)
-	$('.settings-options').html(makeNode('appearance_tab', localStorage.nodeObject))
+	makeNode('body', 'settings_icon', localStorage.nodeObject),
+	makeNode('body', 'settings_pane', localStorage.nodeObject)
+	$('.settings-options').html(nodeMaker('appearance_tab', localStorage.nodeObject))
 	$('#appearance_tab').addClass('selected')
 
 	// Open and close settings
@@ -155,7 +151,7 @@ $(document).ready(function () {
 		$('.settings-tab').removeClass('selected')
 		$(this).addClass('selected')
 		$('.settings-options > *').css('display', 'none')
-		$('.settings-options').html(makeNode(event.target.id, localStorage.nodeObject))
+		$('.settings-options').html(nodeMaker(event.target.id, localStorage.nodeObject))
 
 		if (event.target.id == 'appearance_tab') {
 			bkgImgBtnStatus()
@@ -188,7 +184,6 @@ $(document).ready(function () {
 				bkgImgBtnStatus()
 			}
 			document.querySelector('#input-background-image').value = ''
-			console.log(document.querySelector('#input-background-image').value)
 		}
 	})
 	$(document).on('click', '#setting-background-image button', function () {
@@ -278,7 +273,7 @@ function updateShortcuts() {
 }
 
 // Create DOM elements
-function makeNode(node, key) {
+function nodeMaker(node, key) {
 	if (key) {
 		key = JSON.parse(key)
 		node = key[node]
@@ -293,10 +288,10 @@ function makeNode(node, key) {
 		}
 		if (node.child) {
 			if ($.type(node.child) == 'object') {
-				element.appendChild(makeNode(node.child))
+				element.appendChild(nodeMaker(node.child))
 			} else if ($.type(node.child) == 'array') {
 				$.each(node.child, function (i, val) {
-					element.appendChild(makeNode(val))
+					element.appendChild(nodeMaker(val))
 				})
 			}
 		}
@@ -320,10 +315,10 @@ function makeNode(node, key) {
 			if ($.type(node.child) == 'string') {
 				element.html(node.child)
 			} else if ($.type(node.child) == 'object') {
-				element.html(makeNode(node.child))
+				element.html(nodeMaker(node.child))
 			} else if ($.type(node.child) == 'array') {
 				$.each(node.child, function (i, val) {
-					element.append(makeNode(val))
+					element.append(nodeMaker(val))
 				})
 			}
 		}
@@ -333,7 +328,13 @@ function makeNode(node, key) {
 			})
 		}
 	}
+	console.log(element)
 	return element
+}
+function makeNode(parent, node, key) {
+	$(parent).append(
+		nodeMaker(node, key)
+	)
 }
 
 // Define DOM elements
@@ -347,7 +348,7 @@ function loadNodeObject() {
     */
    	// 	$('<div>').addClass('clock').append($('<div>').addClass('time'), $('<div>').addClass('day'))
 	localStorage.nodeObject = JSON.stringify({
-		clockp: {
+		clock: {
 			tag: 'div',
 			cls: 'clock',
 			child: [
