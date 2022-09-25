@@ -10,15 +10,13 @@ $(document).ready(function () {
 
 	/* Clock */
 	$('body').append(
-		$('<div>').addClass('clock').append($('<div>').addClass('time'), $('<div>').addClass('day'))
+		makeNode('clockp', localStorage.nodeObject)
 	)
 	clockUpdate()
 	setInterval(clockUpdate, 1000)
 
 	/* Shortcuts */
-	$('body').append($('<div>').addClass('shortcuts'))
 	loadShortcuts()
-	$('body').append(makeNode('shortcut_trash', localStorage.nodeObject))
 
 	// Drag Shortcuts
 	$('.shortcut').on('dragstart', function (event) {
@@ -40,7 +38,9 @@ $(document).ready(function () {
 	$('.shortcut').on('dragover', function () {
 		$('#dragging').insertBefore($(this))
 	})
+
 	//  Shortcut Trash
+	$('body').append(makeNode('shortcut_trash', localStorage.nodeObject))
 	$('.shortcut-trash').on('dragover', function (event) {
 		event.preventDefault()
 	})
@@ -106,6 +106,7 @@ $(document).ready(function () {
 			}
 		}
 	})
+
 	// Open settings with settings icon
 	$('.settings-icon').click(function () {
 		if ($('.settings-pane').css('display') == 'none') {
@@ -115,6 +116,7 @@ $(document).ready(function () {
 		}
 		$('.settings-icon').blur()
 	})
+
 	// Open settings with keyboard shortcut "shift + ."
 	$(document).keydown(function (event) {
 		if (event.which === 190 && event.shiftKey) {
@@ -125,6 +127,7 @@ $(document).ready(function () {
 			}
 		}
 	})
+
 	// Close settings when clicked outside
 	$(document).click(function (event) {
 		var container = $('.settings-pane')
@@ -138,6 +141,7 @@ $(document).ready(function () {
 			closeSettings()
 		}
 	})
+
 	//Close settings when esc key is hit
 	$(document).keydown(function (event) {
 		if (event.which === 27) {
@@ -187,7 +191,6 @@ $(document).ready(function () {
 			console.log(document.querySelector('#input-background-image').value)
 		}
 	})
-
 	$(document).on('click', '#setting-background-image button', function () {
 		if (localStorage.backgroundImage) {
 			$('body').css('background-image', 'none')
@@ -236,6 +239,7 @@ function clockUpdate() {
 
 // Load shortcuts on page load from Local Storage
 function loadShortcuts() {
+	$('body').append($('<div>').addClass('shortcuts'))
 	if (localStorage.shortcuts) {
 		var shortcuts = JSON.parse(localStorage.shortcuts)
 		for (i in shortcuts) {
@@ -341,7 +345,22 @@ function loadNodeObject() {
         child    : String | Object | Array[Object]
 		css		 : Object
     */
+   	// 	$('<div>').addClass('clock').append($('<div>').addClass('time'), $('<div>').addClass('day'))
 	localStorage.nodeObject = JSON.stringify({
+		clockp: {
+			tag: 'div',
+			cls: 'clock',
+			child: [
+				{
+					tag: 'div',
+					cls: 'time'
+				},
+				{
+					tag: 'div',
+					cls: 'day'
+				}
+			]
+		},
 		shortcut_trash: {
 			tag: 'div',
 			cls: 'shortcut-trash',
