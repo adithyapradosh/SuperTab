@@ -94,9 +94,11 @@ body {
 
 .shortcuts {
     margin: 3vh auto 0 auto;
-    width: max-content;
+    width: 80vw;
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .shortcut {
