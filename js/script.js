@@ -9,7 +9,6 @@ $(document).ready(function () {
 	}
 
 	/* Clock */
-	makeNode('body', 'clock', localStorage.nodeObject)
 	clockUpdate()
 	setInterval(clockUpdate, 1000)
 
@@ -38,7 +37,6 @@ $(document).ready(function () {
 	})
 
 	// Shortcut Trash
-	makeNode('body', 'shortcut_trash', localStorage.nodeObject)
 	$('.shortcut-trash').on('dragover', function (event) {
 		event.preventDefault()
 	})
@@ -68,9 +66,6 @@ $(document).ready(function () {
 	})
 
 	/* Settings */
-	makeNode('body', 'settings_icon', localStorage.nodeObject),
-	makeNode('body', 'settings_pane', localStorage.nodeObject)
-	$('#appearance_tab').addClass('selected')
 
 	// Open and close settings
 	function openSettings() {
@@ -229,8 +224,8 @@ function clockUpdate() {
 
 // Load shortcuts on page load from Local Storage
 function loadShortcuts() {
-	$('body').append($('<div>').addClass('shortcuts'))
 	if (localStorage.shortcuts) {
+		$('body').append($('<div>').addClass('shortcuts'))
 		var shortcuts = JSON.parse(localStorage.shortcuts)
 		for (i in shortcuts) {
 			var img
@@ -341,126 +336,7 @@ function loadNodeObject() {
         child    : String | Object | Array[Object]
 		css		 : Object
     */
-   	// 	$('<div>').addClass('clock').append($('<div>').addClass('time'), $('<div>').addClass('day'))
 	localStorage.nodeObject = JSON.stringify({
-		clock: {
-			tag: 'div',
-			cls: 'clock',
-			child: [
-				{
-					tag: 'div',
-					cls: 'time'
-				},
-				{
-					tag: 'div',
-					cls: 'day'
-				}
-			]
-		},
-		shortcut_trash: {
-			tag: 'div',
-			cls: 'shortcut-trash',
-			child: {
-				tag: 'svg',
-				attr: {
-					width: '100%',
-					xmlns: 'http://www.w3.org/2000/svg',
-					x: '0px',
-					y: '0px',
-					viewBox: '0 0 24 24',
-				},
-				child: [
-					{
-						tag: 'path',
-						attr: {
-							d: 'M0 0h24v24H0V0z',
-							fill: 'none',
-						},
-					},
-					{
-						tag: 'path',
-						attr: {
-							d: 'M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z',
-						},
-					},
-				],
-			},
-		},
-		settings_icon: {
-			tag: 'button',
-			cls: 'settings-icon',
-			child: {
-				tag: 'svg',
-				attr: {
-					width: '100%',
-					xmlns: 'http://www.w3.org/2000/svg',
-					x: '0px',
-					y: '0px',
-					viewBox: '0 0 32 32',
-				},
-				child: {
-					tag: 'path',
-					attr: {
-						d: 'M29.6,12.7c-0.1-0.5-0.6-0.8-1.1-0.8c-1.2,0.2-2.4-0.4-3-1.5c-0.6-1-0.5-2.4,0.2-3.3c0.3-0.4,0.3-1-0.1-1.3 C24,4.3,22.1,3.2,20,2.6c-0.5-0.1-1,0.1-1.2,0.6C18.3,4.3,17.2,5,16,5s-2.3-0.7-2.8-1.8C13,2.7,12.5,2.4,12,2.6 C9.9,3.2,8,4.3,6.4,5.9C6,6.2,6,6.8,6.3,7.2c0.7,1,0.8,2.3,0.2,3.3c-0.6,1-1.8,1.6-3,1.5c-0.5-0.1-1,0.3-1.1,0.8 C2.1,13.8,2,14.9,2,16s0.1,2.2,0.4,3.3C2.5,19.8,3,20.1,3.5,20c1.2-0.2,2.4,0.4,3,1.5c0.6,1,0.5,2.4-0.2,3.3c-0.3,0.4-0.3,1,0.1,1.3 c1.6,1.5,3.6,2.7,5.7,3.3c0.5,0.1,1-0.1,1.2-0.6c0.5-1.1,1.6-1.8,2.8-1.8s2.3,0.7,2.8,1.8c0.2,0.4,0.5,0.6,0.9,0.6 c0.1,0,0.2,0,0.3,0c2.1-0.6,4.1-1.8,5.7-3.3c0.4-0.4,0.4-0.9,0.1-1.3c-0.7-1-0.8-2.3-0.2-3.3c0.6-1,1.8-1.6,3-1.5 c0.5,0.1,1-0.3,1.1-0.8c0.3-1.1,0.4-2.2,0.4-3.3S29.9,13.8,29.6,12.7z M16,20c-2.2,0-4-1.8-4-4s1.8-4,4-4s4,1.8,4,4S18.2,20,16,20z',
-					},
-				},
-			},
-		},
-		settings_pane: {
-			tag: 'div',
-			cls: 'settings-pane',
-			child: [
-				{
-					tag: 'nav',
-					cls: 'settings-nav',
-					child: {
-						tag: 'ul',
-						child: [
-							{
-								tag: 'li',
-								child: {
-									tag: 'button',
-									cls: 'settings-tab',
-									attr: {
-										id: 'appearance_tab',
-										tabindex: 0,
-									},
-									child: '🎨 &nbsp Appearance',
-								},
-							},
-							{
-								tag: 'li',
-								child: {
-									tag: 'button',
-									cls: 'settings-tab',
-									attr: {
-										id: 'bookmarks_tab',
-										tabindex: 0,
-									},
-									child: '🚩 &nbsp Bookmarks',
-								},
-							},
-							{
-								tag: 'li',
-								child: {
-									tag: 'button',
-									cls: 'settings-tab',
-									attr: {
-										id: 'shortcuts_tab',
-										tabindex: 0,
-									},
-									child: '🏁 &nbsp Shortcuts	',
-								},
-							},
-						],
-					},
-				},
-				{
-					tag: 'div',
-					cls: 'settings-options',
-				},
-			],
-		},
 		appearance_tab: {
 			tag: 'div',
 			cls: 'appearance-tab',
