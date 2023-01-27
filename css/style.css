@@ -257,7 +257,6 @@ body {
 
 .settings-pane {
     display: none;
-    opacity: 0;
     width: 54vw;
     height: 70vh;
     min-width: fit-content;

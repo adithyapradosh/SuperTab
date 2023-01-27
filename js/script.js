@@ -30,14 +30,14 @@ $(document).ready(function () {
 		$('.shortcut-trash').hide()
 		updateShortcuts()
 	})
-	$('.shortcuts').on('dragover', function (event) {
-		event.preventDefault()
-	})
 	$('.shortcut').on('dragover', function () {
 		$('#dragging').insertBefore($(this))
 	})
+	$('.shortcuts').on('dragover', function (event) {
+		event.preventDefault()
+	})
 
-	//  Shortcut Trash
+	// Shortcut Trash
 	makeNode('body', 'shortcut_trash', localStorage.nodeObject)
 	$('.shortcut-trash').on('dragover', function (event) {
 		event.preventDefault()
@@ -70,22 +70,17 @@ $(document).ready(function () {
 	/* Settings */
 	makeNode('body', 'settings_icon', localStorage.nodeObject),
 	makeNode('body', 'settings_pane', localStorage.nodeObject)
-	$('.settings-options').html(nodeMaker('appearance_tab', localStorage.nodeObject))
 	$('#appearance_tab').addClass('selected')
 
 	// Open and close settings
 	function openSettings() {
-		$('.shortcut').attr({ tabindex: -1 })
-		$('.settings-icon').attr({ tabindex: -1 })
-		$('.settings-pane').css({display: 'flex', opacity: 1})
+		$('.settings-pane').css('display', 'flex')
 		$('.selected').focus()
 	}
 	function closeSettings() {
-		$('.shortcut').attr({ tabindex: 0 })
-		$('.settings-icon').attr({ tabindex: 0 })
-		$('.settings-pane').hide().css('opacity', 0)
+		$('.settings-pane').hide()
 	}
-	$(document).keydown(function (event) {
+	$(document).keydown(function (event) {	// revolving tab navigation feature for settings pane
 		var current_tab = $('.settings-options div').attr('class')
 		var first_tab = $('.settings-tab').first().attr('id')
 		var last_tab = $('.settings-tab').last().attr('id')
@@ -150,8 +145,8 @@ $(document).ready(function () {
 		$(this).click()
 		$('.settings-tab').removeClass('selected')
 		$(this).addClass('selected')
-		$('.settings-options > *').css('display', 'none')
-		$('.settings-options').html(nodeMaker(event.target.id, localStorage.nodeObject))
+		$('.settings-options').html('')
+		makeNode('.settings-options', event.target.id, localStorage.nodeObject)
 
 		if (event.target.id == 'appearance_tab') {
 			bkgImgBtnStatus()
@@ -168,7 +163,7 @@ $(document).ready(function () {
 			$('#setting-background-image button').html('Upload Image')
 		}
 	}
-	$(document).on('change', '#input-background-image', function () {
+	$(document).on('change', '#input-background-image', function () {	// upload background image
 		if (this.files && this.files[0]) {
 			var img = document.createElement('img')
 			img.src = URL.createObjectURL(this.files[0])
@@ -186,7 +181,7 @@ $(document).ready(function () {
 			document.querySelector('#input-background-image').value = ''
 		}
 	})
-	$(document).on('click', '#setting-background-image button', function () {
+	$(document).on('click', '#setting-background-image button', function () {	// remove background image
 		if (localStorage.backgroundImage) {
 			$('body').css('background-image', 'none')
 			delete localStorage.backgroundImage
