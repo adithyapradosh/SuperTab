@@ -1,5 +1,5 @@
 chrome.runtime.onMessage.addListener(function (request, sender, response) {
-	if (request.topic == 'icon') {
+	if (request.topic == 'icon') {	//get website icon
 		var icon
 		var links = $('link[rel*="icon"]')
 		var flag = 0

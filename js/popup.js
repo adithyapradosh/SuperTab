@@ -8,21 +8,19 @@ $(document).ready(function () {
 		$('#url').val(tabs[0].url)
 	})
 	$(document).on('click', '#submit', function () {
-		let shortcuts = JSON.parse(localStorage.shortcuts)
-		shortcuts.push({
-			name: $('#name').val(),
-			url: $('#url').val(),
-		})
-		localStorage.shortcuts = JSON.stringify(shortcuts)
 		chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 			chrome.tabs.sendMessage(tabs[0].id, { topic: 'icon' }, function (response) {
 				let shortcuts = JSON.parse(localStorage.shortcuts)
+				shortcuts.push({
+					name: $('#name').val(),
+					url: $('#url').val(),
+				})
 				let icon = response.icon
 				shortcuts[shortcuts.length - 1].icon = icon
 				localStorage.shortcuts = JSON.stringify(shortcuts)
+				checkStatus()
 			})
 		})
-		checkStatus()
 	})
 })
 
