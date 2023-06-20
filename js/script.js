@@ -43,11 +43,11 @@ $(document).ready(function () {
 	var counter = 0
 	$('.shortcut-trash').on('dragenter', function (event) {
 		counter++
-		document.querySelector(".shortcut-trash").classList.toggle("drag-over")
+		document.querySelector('.shortcut-trash').classList.toggle('drag-over')
 	})
 	$('.shortcut-trash').on('dragleave', function (event) {
 		counter--
-		document.querySelector(".shortcut-trash").classList.toggle("drag-over")
+		document.querySelector('.shortcut-trash').classList.toggle('drag-over')
 	})
 	$('.shortcut-trash').on('drop', function (event) {
 		$('#dragging').remove()
@@ -65,7 +65,8 @@ $(document).ready(function () {
 	function closeSettings() {
 		$('.settings-pane').hide()
 	}
-	$(document).keydown(function (event) {	// revolving tab navigation feature for settings pane
+	$(document).keydown(function (event) {
+		// revolving tab navigation feature for settings pane
 		var current_tab = $('.settings-options div').attr('class')
 		var first_tab = $('.settings-tab').first().attr('id')
 		var last_tab = $('.settings-tab').last().attr('id')
@@ -148,7 +149,8 @@ $(document).ready(function () {
 			$('#setting-background-image button').html('Upload Image')
 		}
 	}
-	$(document).on('change', '#input-background-image', function () {	// upload background image
+	$(document).on('change', '#input-background-image', function () {
+		// upload background image
 		if (this.files && this.files[0]) {
 			var img = document.createElement('img')
 			img.src = URL.createObjectURL(this.files[0])
@@ -166,7 +168,8 @@ $(document).ready(function () {
 			document.querySelector('#input-background-image').value = ''
 		}
 	})
-	$(document).on('click', '#setting-background-image button', function () {	// remove background image
+	$(document).on('click', '#setting-background-image button', function () {
+		// remove background image
 		if (localStorage.backgroundImage) {
 			$('body').css('background-image', 'none')
 			delete localStorage.backgroundImage
@@ -312,9 +315,7 @@ function nodeMaker(node, key) {
 	return element
 }
 function makeNode(parent, node, key) {
-	$(parent).append(
-		nodeMaker(node, key)
-	)
+	$(parent).append(nodeMaker(node, key))
 }
 
 // Define DOM elements
