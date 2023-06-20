@@ -43,21 +43,11 @@ $(document).ready(function () {
 	var counter = 0
 	$('.shortcut-trash').on('dragenter', function (event) {
 		counter++
-		$('.shortcut-trash').css({
-			'background-color':
-				'hsl(var(--color-background-h),var(--color-background-s),calc(var(--color-background-l) + 17%),0.5)',
-			fill: 'hsl(var(--color-primary-h),var(--color-primary-s),var(--color-primary-l),0.75)',
-		})
+		document.querySelector(".shortcut-trash").classList.toggle("drag-over")
 	})
 	$('.shortcut-trash').on('dragleave', function (event) {
 		counter--
-		if (counter === 0) {
-			$('.shortcut-trash').css({
-				'background-color':
-					'hsl(var(--color-background-h),var(--color-background-s),calc(var(--color-background-l) + 15%),0.25)',
-				fill: 'hsl(var(--color-primary-h),var(--color-primary-s),var(--color-primary-l),0.5)',
-			})
-		}
+		document.querySelector(".shortcut-trash").classList.toggle("drag-over")
 	})
 	$('.shortcut-trash').on('drop', function (event) {
 		$('#dragging').remove()

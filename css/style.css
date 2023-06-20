@@ -183,21 +183,34 @@ body {
         var(--color-background-h),
         var(--color-background-s),
         calc(var(--color-background-l) + 15%),
-        0.25
+        0.6
     );
     fill: hsl(
         var(--color-primary-h),
         var(--color-primary-s),
         var(--color-primary-l),
-        0.5
+        0.6
     );
+    box-shadow: 0 0 3rem 0.25rem hsla(0, 0%, 0%, 0.5);
     animation-name: slide-in;
     animation-duration: 0.25s;
 }
+.shortcut-trash.drag-over {
+    background-color: hsl(
+        var(--color-background-h),
+        var(--color-background-s),
+        calc(var(--color-background-l) + 25%),
+        0.6
+    );
+}
 
 @keyframes slide-in {
-    from {bottom: 0;}
-    to {bottom: 10vh;}
+    from {
+        bottom: 0;
+    }
+    to {
+        bottom: 10vh;
+    }
 }
 
 /* Clock */
