@@ -172,7 +172,7 @@ body {
 .shortcut-trash {
     display: none;
     position: fixed;
-    bottom: 4vh;
+    bottom: 10vh;
     right: 50%;
     margin: 0 calc(-1.25rem - 10px) 0 0;
     width: 2.5rem;
@@ -191,6 +191,13 @@ body {
         var(--color-primary-l),
         0.5
     );
+    animation-name: slide-in;
+    animation-duration: 0.25s;
+}
+
+@keyframes slide-in {
+    from {bottom: 0;}
+    to {bottom: 10vh;}
 }
 
 /* Clock */
