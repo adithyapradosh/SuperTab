@@ -17,24 +17,36 @@ $(document).ready(function () {
 
 	// Drag Shortcuts
 	$('.shortcut').on('dragstart', function (event) {
-		$(this).attr('id', 'dragging')
+		$(this).addClass('dragging')
 		$.event.addProp('dataTransfer')
 		event.dataTransfer.setData('Text', event.target.id)
 		$('.shortcut-trash').show()
 		$(this).css('opacity', '0.01')
 	})
 	$('.shortcut').on('dragend', function () {
+		$(this).removeClass('dragging')
 		$(this).css('opacity', '1')
-		$(this).removeAttr('id')
 		$('.shortcut-trash').hide()
 		updateShortcuts()
 	})
-	$('.shortcut').on('dragover', function () {
-		$('#dragging').insertBefore($(this))
-	})
 	$('.shortcuts').on('dragover', function (event) {
 		event.preventDefault()
+		const neighbour = getNeighbour(event.clientX)
+		if (neighbour == null) $('.shortcuts').append($('.dragging'))
+		else $('.dragging').insertBefore(neighbour)
 	})
+	function getNeighbour(x) {
+		const neighbours = $('.shortcut:not(.dragging)').toArray()
+		return neighbours.reduce(
+			function (closest, child) {
+				const box = child.getBoundingClientRect()
+				const offset = x - box.left - box.width / 2
+				if (offset < 0 && offset > closest.offset) return { offset: offset, element: child }
+				else return closest
+			},
+			{ offset: Number.NEGATIVE_INFINITY }
+		).element
+	}
 
 	// Shortcut Trash
 	$('.shortcut-trash').on('dragover', function (event) {
@@ -50,7 +62,7 @@ $(document).ready(function () {
 		document.querySelector('.shortcut-trash').classList.toggle('drag-over')
 	})
 	$('.shortcut-trash').on('drop', function (event) {
-		$('#dragging').remove()
+		$('.dragging').remove()
 		$('.shortcut-trash').hide()
 		updateShortcuts()
 	})
