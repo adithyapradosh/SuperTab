@@ -195,13 +195,12 @@ body {
     animation-name: slide-in;
     animation-duration: 0.25s;
 }
-.shortcut-trash.drag-over {
-    background-color: hsl(
-        var(--color-background-h),
-        var(--color-background-s),
-        calc(var(--color-background-l) + 25%),
-        0.6
-    );
+.shortcut-trash.drag-enter {
+    margin: 0 calc(-1.75rem - 10px) -0.5rem 0;
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: hsla(0, 100%, 50%, 0.4);
+    fill: hsl(0, 0%, 100%);
 }
 
 @keyframes slide-in {

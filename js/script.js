@@ -55,11 +55,11 @@ $(document).ready(function () {
 	var counter = 0
 	$('.shortcut-trash').on('dragenter', function (event) {
 		counter++
-		document.querySelector('.shortcut-trash').classList.toggle('drag-over')
+		document.querySelector('.shortcut-trash').classList.toggle('drag-enter')
 	})
 	$('.shortcut-trash').on('dragleave', function (event) {
 		counter--
-		document.querySelector('.shortcut-trash').classList.toggle('drag-over')
+		document.querySelector('.shortcut-trash').classList.toggle('drag-enter')
 	})
 	$('.shortcut-trash').on('drop', function (event) {
 		$('.dragging').remove()
