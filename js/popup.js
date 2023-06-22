@@ -9,16 +9,39 @@ $(document).ready(function () {
 	})
 	$(document).on('click', '#submit', function () {
 		chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-			chrome.tabs.sendMessage(tabs[0].id, { topic: 'icon' }, function (response) {
+			chrome.tabs.sendMessage(tabs[0].id, { topic: 'iconLinks' }, function (response) {
+				// grab name and url
 				let shortcuts = JSON.parse(localStorage.shortcuts)
 				shortcuts.push({
 					name: $('#name').val(),
 					url: $('#url').val(),
 				})
-				let icon = response.icon
-				shortcuts[shortcuts.length - 1].icon = icon
-				localStorage.shortcuts = JSON.stringify(shortcuts)
-				checkStatus()
+				// grab website icon
+				let iconLinks = response.iconLinks
+				let size = 0
+				if (iconLinks.length != 0) {
+					iconLinks.forEach(function (val) {
+						function getMeta(url, callback) {
+							const img = new Image()
+							img.src = url
+							img.onload = function () {
+								callback(this.width)
+							}
+						}
+						getMeta(val, (width) => {
+							if (width > size) {
+								shortcuts[shortcuts.length - 1].icon = val
+								localStorage.shortcuts = JSON.stringify(shortcuts)
+								size = width
+								checkStatus()
+							}
+						})
+					})
+				} else {
+					shortcuts[shortcuts.length - 1].icon = tabs[0].favIconUrl
+					localStorage.shortcuts = JSON.stringify(shortcuts)
+					checkStatus()
+				}
 			})
 		})
 	})
