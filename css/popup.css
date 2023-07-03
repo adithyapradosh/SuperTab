@@ -9,7 +9,7 @@
 
     --color-text-h: 0;
     --color-text-s: 0%;
-    --color-text-l: 90%;
+    --color-text-l: 100%;
 
     font-size: calc(14 / 16 * 1rem);
 }
@@ -57,12 +57,7 @@ form > span {
         var(--color-background-s),
         calc(var(--color-background-l) - 5%)
     );
-    border: 1px solid
-        hsl(
-            var(--color-primary-h),
-            var(--color-primary-s),
-            var(--color-primary-l)
-        );
+    border: 0px solid;
     border-radius: 5px;
     outline: none;
 }
