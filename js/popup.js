@@ -17,7 +17,8 @@ $(document).ready(function () {
 					url: $('#url').val(),
 				})
 				// grab website icon
-				let iconLinks = response.iconLinks
+				var iconLinks = []
+				if (response) iconLinks = response.iconLinks
 				let size = 0
 				if (iconLinks.length != 0) {
 					iconLinks.forEach(function (val) {
@@ -49,25 +50,24 @@ $(document).ready(function () {
 
 function checkStatus() {
 	chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-		let shortcuts = JSON.parse(localStorage.shortcuts)
-		if (shortcuts.length > 0) {
+		if (tabs[0].url.slice(0, 4) == 'http') {
+			let shortcuts = JSON.parse(localStorage.shortcuts)
 			let flag = 0
 			$.each(shortcuts, function (i, val) {
 				if (val.url == tabs[0].url) {
 					flag = 1
 				}
-				if (flag == 1) {
-					$('.form-action').html($('<span>').html('Added'))
-				} else {
-					$('.form-action').html(
-						$('<button>').attr({ id: 'submit', type: 'button' }).html('Done')
-					)
-				}
 			})
+			if (flag == 1) {
+				$('.form-action').html($('<span>').html('Added'))
+			} else {
+				$('.form-action').html(
+					$('<button>').attr({ id: 'submit', type: 'button' }).html('Done')
+				)
+			}
 		} else {
-			$('.form-action').html(
-				$('<button>').attr({ id: 'submit', type: 'button' }).html('Done')
-			)
+			$('form').css('display', 'none')
+			$('.errorMsg').css('display', 'block')
 		}
 	})
 }

@@ -17,7 +17,7 @@
 html,
 body {
     width: 22rem;
-    height: 12rem;
+    height: fit-content;
     margin: 0;
     background-color: hsl(
         var(--color-background-h),
@@ -102,4 +102,10 @@ form > span {
         var(--color-primary-s),
         var(--color-primary-l)
     );
+}
+
+.errorMsg {
+    display: none;
+    font-size: medium;
+    padding: 1rem;
 }
