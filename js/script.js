@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	// Load DOM data
 	if (!localStorage.nodeObject) {
-		loadNodeObject()
+		loadNodes()
 	}
 	// Load Background Image
 	if (localStorage.backgroundImage) {
@@ -250,6 +250,8 @@ function loadShortcuts() {
 					href: shortcuts[i].url,
 				})
 				.html(img)
+			var label = $('<div>').addClass('label').html(shortcuts[i].name)
+			div.append(label)
 			$('.shortcuts').append(div)
 		}
 	}
@@ -331,7 +333,7 @@ function makeNode(parent, node, key) {
 }
 
 // Define DOM elements
-function loadNodeObject() {
+function loadNodes() {
 	/*
         tag      : String
         cls      : String | Array[String]
