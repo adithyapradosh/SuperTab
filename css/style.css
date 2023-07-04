@@ -1,7 +1,7 @@
 :root {
-    --color-background-h: 0;
-    --color-background-s: 0%;
-    --color-background-l: 18%;
+    --color-background-h: 227;
+    --color-background-s: 16%;
+    --color-background-l: 11%;
 
     --color-primary-h: 0;
     --color-primary-s: 0%;
@@ -281,7 +281,10 @@ body {
         0.75
     );
     backdrop-filter: blur(25px);
-    box-shadow: 0 2px 15px -7px black;
+    box-shadow: 0 1vw 1vw hsla(0, 0%, 0%, 0.05),
+        0 1.5vw 1.5vw hsla(0, 0%, 0%, 0.05), 0 2vw 2vw hsla(0, 0%, 0%, 0.05),
+        0 2.5vw 2.5vw hsla(0, 0%, 0%, 0.05), 0 3vw 3vw hsla(0, 0%, 0%, 0.05),
+        0 3.5vw 3.5vw hsla(0, 0%, 0%, 0.05);
     border-radius: 0.7rem;
 }
 
