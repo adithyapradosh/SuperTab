@@ -324,7 +324,6 @@ function nodeMaker(node, key) {
 			})
 		}
 	}
-	console.log(element)
 	return element
 }
 function makeNode(parent, node, key) {
