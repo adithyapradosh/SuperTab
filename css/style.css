@@ -20,7 +20,7 @@
     outline: none;
 }
 
-select {
+/* select {
     padding: 0.3rem 0.5rem;
     margin-top: -0.3rem;
     color: hsl(var(--color-text-h), var(--color-text-s), var(--color-text-l));
@@ -28,6 +28,17 @@ select {
     border: none;
     border-radius: 0.35rem;
     font-size: inherit;
+} */
+
+select {
+    display: block;
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
 }
 
 button {
@@ -94,7 +105,8 @@ body {
 
 .shortcuts {
     margin: 3vh auto 0 auto;
-    width: 80vw;
+    padding: 0 2.5rem;
+    width: fit-content;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -106,14 +118,14 @@ body {
     z-index: 0;
     width: 5rem;
     height: 5rem;
-    margin: 1.5rem 0.5rem 0.5rem 0.5rem;
+    margin: 2rem 0.75rem 2rem 0.75rem;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     background-color: hsl(
         var(--color-background-h),
         var(--color-background-s),
-        calc(var(--color-background-l) + 15%),
+        calc(var(--color-background-l) + 50%),
         0.25
     );
     border-radius: 25%;
@@ -125,8 +137,8 @@ body {
     background-color: hsl(
         var(--color-background-h),
         var(--color-background-s),
-        calc(var(--color-background-l) + 17%),
-        0.5
+        calc(var(--color-background-l) + 100%),
+        0.25
     );
     transform: translateY(-3px);
 }
@@ -285,16 +297,16 @@ body {
         0 1.5vw 1.5vw hsla(0, 0%, 0%, 0.05), 0 2vw 2vw hsla(0, 0%, 0%, 0.05),
         0 2.5vw 2.5vw hsla(0, 0%, 0%, 0.05), 0 3vw 3vw hsla(0, 0%, 0%, 0.05),
         0 3.5vw 3.5vw hsla(0, 0%, 0%, 0.05);
-    border-radius: 0.7rem;
+    border-radius: 2rem;
 }
 
 .settings-nav {
-    margin: 10px 0;
-    min-width: fit-content;
-    padding: 1.2rem 0 1rem 1rem;
+    margin: 0px 0;
+    min-width: 10vw;
+    padding: 2rem 1rem 1.5rem 1.5rem;
     border-right: solid;
     border-width: 1px;
-    border-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.05);
     font-size: 1.05rem;
     overflow: scroll;
 }
@@ -327,7 +339,7 @@ body {
     height: 1.6rem;
     width: 0.25rem;
     position: absolute;
-    left: 0.5rem;
+    left: 1rem;
     background-color: hsl(
         var(--color-primary-h),
         var(--color-primary-s),
@@ -344,7 +356,7 @@ body {
 
 .settings-options {
     width: 100%;
-    padding: 1rem 0.3rem 1rem 1rem;
+    padding: 1rem 1rem 1rem 1rem;
     font-size: 1rem;
     overflow: scroll;
 }
@@ -358,7 +370,7 @@ body {
     );
     padding: 1rem 1rem 0 1rem;
     margin-bottom: 1rem;
-    border-radius: 0.35rem;
+    border-radius: 1rem;
 }
 
 .settings-options form > div {
@@ -368,6 +380,12 @@ body {
 }
 
 .settings-options button {
+    background-color: rgb(22, 24, 26);
+    padding: 0.5rem 0.7rem;
+    border-radius: 0.35rem;
+}
+
+.settings-options select {
     background-color: rgb(22, 24, 26);
     padding: 0.5rem 0.7rem;
     border-radius: 0.35rem;

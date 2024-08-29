@@ -1,12 +1,5 @@
 $(document).ready(function () {
-	// Load DOM data
-	if (!localStorage.nodeObject) {
-		loadNodes()
-	}
-	// Load Background Image
-	if (localStorage.backgroundImage) {
-		$('body').css('background-image', localStorage.backgroundImage)
-	}
+	/* Load Settings */
 
 	/* Clock */
 	clockUpdate()
@@ -80,17 +73,17 @@ $(document).ready(function () {
 	}
 	$(document).keydown(function (event) {
 		// revolving tab navigation feature for settings pane
-		var current_tab = $('.settings-options div').attr('class')
+		var current_tab = $('.settings-tab.selected').attr('id')
 		var first_tab = $('.settings-tab').first().attr('id')
 		var last_tab = $('.settings-tab').last().attr('id')
 		if (event.which == 9 && !event.shiftKey && $('.settings-pane').css('display') != 'none') {
-			if (current_tab.split('-')[0] == last_tab.split('_')[0]) {
+			if (current_tab == last_tab) {
 				event.preventDefault()
 				$('#' + first_tab).focus()
 			}
 		}
 		if (event.which == 9 && event.shiftKey && $('.settings-pane').css('display') != 'none') {
-			if (current_tab.split('-')[0] == first_tab.split('_')[0]) {
+			if (current_tab == first_tab) {
 				event.preventDefault()
 				$('#' + last_tab).focus()
 			}
@@ -142,19 +135,39 @@ $(document).ready(function () {
 	//Settings Tabs
 	$('.settings-tab').focus(function (event) {
 		$(this).click()
+
+		$('#' + $('.settings-tab.selected').attr('id').split('-')[0] + '-options').css(
+			'display',
+			'none'
+		)
+
 		$('.settings-tab').removeClass('selected')
 		$(this).addClass('selected')
-		$('.settings-options').html('')
-		makeNode('.settings-options', event.target.id, localStorage.nodeObject)
 
-		if (event.target.id == 'appearance_tab') {
+		$('#' + $('.settings-tab.selected').attr('id').split('-')[0] + '-options').css(
+			'display',
+			'block'
+		)
+
+		// load settings inputs
+
+		if (event.target.id == 'appearance-tab') {
 			bkgImgBtnStatus()
+		}
+
+		if (event.target.id == 'shortcuts-tab') {
+			updateShortcutsAlignmentSelector()
 		}
 	})
 
 	/* Settings Functions */
 
-	//Change Background Image
+	// Load Background Image
+	if (localStorage.backgroundImage) {
+		$('body').css('background-image', localStorage.backgroundImage)
+	}
+
+	// Change Background Image
 	function bkgImgBtnStatus() {
 		if (localStorage.backgroundImage) {
 			$('#setting-background-image button').html('Remove')
@@ -191,6 +204,27 @@ $(document).ready(function () {
 			$('#input-background-image').click()
 		}
 	})
+
+	// Align Shortcuts
+	function alignShortcuts() {
+		if (localStorage.shortcutsAlignment == 'Center') {
+			$('.shortcuts').css('margin', '3vh auto 0 auto')
+		} else if (localStorage.shortcutsAlignment == 'Left') {
+			$('.shortcuts').css('margin', '3vh auto 0 0')
+		} else if (localStorage.shortcutsAlignment == 'Right') {
+			$('.shortcuts').css('margin', '3vh 0 0 auto')
+		}
+	}
+	alignShortcuts()
+
+	$(document).on('change', '#input-align-shortcuts', function () {
+		localStorage.shortcutsAlignment = $('#input-align-shortcuts').find(':selected').text()
+		alignShortcuts()
+	})
+
+	function updateShortcutsAlignmentSelector() {
+		$('#input-align-shortcuts').val(localStorage.shortcutsAlignment)
+	}
 })
 
 /* Function Definitions */
@@ -257,198 +291,77 @@ function loadShortcuts() {
 	}
 }
 
-// Update shortcuts data in Local Storage
-function updateShortcuts() {
-	var shortcuts = new Array()
-	$('.shortcut').each(function (i) {
-		shortcuts[i] = {
-			name: $(this).attr('name'),
-			url: $(this).attr('href'),
-			icon: $(this).children().attr('src'),
-		}
-	})
-	localStorage.shortcuts = JSON.stringify(shortcuts)
-}
+// // Update shortcuts data in Local Storage
+// function updateShortcuts() {
+// 	var shortcuts = new Array()
+// 	$('.shortcut').each(function (i) {
+// 		shortcuts[i] = {
+// 			name: $(this).attr('name'),
+// 			url: $(this).attr('href'),
+// 			icon: $(this).children().attr('src'),
+// 		}
+// 	})
+// 	localStorage.shortcuts = JSON.stringify(shortcuts)
+// }
 
-// Create DOM elements
-function nodeMaker(node, key) {
-	if (key) {
-		key = JSON.parse(key)
-		node = key[node]
-	}
-	var element
-	if (node.tag == 'svg' || node.tag == 'path') {
-		element = document.createElementNS('http://www.w3.org/2000/svg', node.tag)
-		if (node.attr) {
-			$.each(node.attr, function (i, val) {
-				element.setAttribute(i, val)
-			})
-		}
-		if (node.child) {
-			if ($.type(node.child) == 'object') {
-				element.appendChild(nodeMaker(node.child))
-			} else if ($.type(node.child) == 'array') {
-				$.each(node.child, function (i, val) {
-					element.appendChild(nodeMaker(val))
-				})
-			}
-		}
-	} else {
-		element = $('<' + node.tag + '>')
-		if (node.cls) {
-			if ($.type(node.cls) == 'string') {
-				element.addClass(node.cls)
-			} else if ($.type(node.cls) == 'array') {
-				$.each(node.cls, function (i, val) {
-					element.addClass(val)
-				})
-			}
-		}
-		if (node.attr) {
-			$.each(node.attr, function (i, val) {
-				element.attr(i, val)
-			})
-		}
-		if (node.child) {
-			if ($.type(node.child) == 'string') {
-				element.html(node.child)
-			} else if ($.type(node.child) == 'object') {
-				element.html(nodeMaker(node.child))
-			} else if ($.type(node.child) == 'array') {
-				$.each(node.child, function (i, val) {
-					element.append(nodeMaker(val))
-				})
-			}
-		}
-		if (node.css) {
-			$.each(node.css, function (i, val) {
-				element.css(i, val)
-			})
-		}
-	}
-	return element
-}
-function makeNode(parent, node, key) {
-	$(parent).append(nodeMaker(node, key))
-}
-
-// Define DOM elements
-function loadNodes() {
-	/*
-        tag      : String
-        cls      : String | Array[String]
-        attr     : Object
-        child    : String | Object | Array[Object]
-		css		 : Object
-    */
-	localStorage.nodeObject = JSON.stringify({
-		appearance_tab: {
-			tag: 'div',
-			cls: 'appearance-tab',
-			child: {
-				tag: 'form',
-				cls: 'form',
-				child: {
-					tag: 'div',
-					attr: { id: 'setting-background-image' },
-					css: { 'align-items': 'center' },
-					child: [
-						{
-							tag: 'div',
-							child: 'Background Image',
-						},
-						{
-							tag: 'button',
-							attr: { type: 'button' },
-						},
-						{
-							tag: 'input',
-							attr: { id: 'input-background-image', type: 'file', accept: 'image/*' },
-							css: { display: 'none' },
-						},
-					],
-				},
-			},
-		},
-		bookmarks_tab: {
-			tag: 'div',
-			cls: 'bookmarks-tab',
-			child: {
-				tag: 'form',
-				cls: 'form',
-				child: {
-					tag: 'div',
-					cls: 'form',
-					child: [
-						{
-							tag: 'label',
-							attr: { for: 'alignment-shortcuts' },
-							child: 'Align Bookmarks',
-						},
-						{
-							tag: 'select',
-							attr: { id: 'align-shortcuts', name: 'alignments' },
-							child: [
-								{
-									tag: 'option',
-									attr: { value: '' },
-									child: 'Center',
-								},
-								{
-									tag: 'option',
-									attr: { value: '' },
-									child: 'Left',
-								},
-								{
-									tag: 'option',
-									attr: { value: '' },
-									child: 'Right',
-								},
-							],
-						},
-					],
-				},
-			},
-		},
-		shortcuts_tab: {
-			tag: 'div',
-			cls: 'shortcuts-tab',
-			child: {
-				tag: 'form',
-				cls: 'form',
-				child: {
-					tag: 'div',
-					cls: 'form',
-					child: [
-						{
-							tag: 'label',
-							attr: { for: 'alignment-shortcuts' },
-							child: 'Align Shortcuts',
-						},
-						{
-							tag: 'select',
-							attr: { id: 'align-shortcuts', name: 'alignments' },
-							child: [
-								{
-									tag: 'option',
-									attr: { value: '' },
-									child: 'Center',
-								},
-								{
-									tag: 'option',
-									attr: { value: '' },
-									child: 'Left',
-								},
-								{
-									tag: 'option',
-									attr: { value: '' },
-									child: 'Right',
-								},
-							],
-						},
-					],
-				},
-			},
-		},
-	})
-}
+// // Create DOM elements
+// function nodeMaker(node, key) {
+// 	if (key) {
+// 		key = JSON.parse(key)
+// 		node = key[node]
+// 	}
+// 	var element
+// 	if (node.tag == 'svg' || node.tag == 'path') {
+// 		element = document.createElementNS('http://www.w3.org/2000/svg', node.tag)
+// 		if (node.attr) {
+// 			$.each(node.attr, function (i, val) {
+// 				element.setAttribute(i, val)
+// 			})
+// 		}
+// 		if (node.child) {
+// 			if ($.type(node.child) == 'object') {
+// 				element.appendChild(nodeMaker(node.child))
+// 			} else if ($.type(node.child) == 'array') {
+// 				$.each(node.child, function (i, val) {
+// 					element.appendChild(nodeMaker(val))
+// 				})
+// 			}
+// 		}
+// 	} else {
+// 		element = $('<' + node.tag + '>')
+// 		if (node.cls) {
+// 			if ($.type(node.cls) == 'string') {
+// 				element.addClass(node.cls)
+// 			} else if ($.type(node.cls) == 'array') {
+// 				$.each(node.cls, function (i, val) {
+// 					element.addClass(val)
+// 				})
+// 			}
+// 		}
+// 		if (node.attr) {
+// 			$.each(node.attr, function (i, val) {
+// 				element.attr(i, val)
+// 			})
+// 		}
+// 		if (node.child) {
+// 			if ($.type(node.child) == 'string') {
+// 				element.html(node.child)
+// 			} else if ($.type(node.child) == 'object') {
+// 				element.html(nodeMaker(node.child))
+// 			} else if ($.type(node.child) == 'array') {
+// 				$.each(node.child, function (i, val) {
+// 					element.append(nodeMaker(val))
+// 				})
+// 			}
+// 		}
+// 		if (node.css) {
+// 			$.each(node.css, function (i, val) {
+// 				element.css(i, val)
+// 			})
+// 		}
+// 	}
+// 	return element
+// }
+// function makeNode(parent, node, key) {
+// 	$(parent).append(nodeMaker(node, key))
+// }

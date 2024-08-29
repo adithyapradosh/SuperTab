@@ -46,34 +46,41 @@
             <nav class="settings-nav">
                 <ul>
                     <li>
-                        <button class="settings-tab selected" id="appearance_tab" tabindex="0">
+                        <button class="settings-tab selected" id="appearance-tab" tabindex="0">
                             🎨 &nbsp; Appearance
                         </button>
                     </li>
                     <li>
-                        <button class="settings-tab" id="bookmarks_tab" tabindex="0">
-                            🚩 &nbsp; Bookmarks
-                        </button>
-                    </li>
-                    <li>
-                        <button class="settings-tab" id="shortcuts_tab" tabindex="0">
+                        <button class="settings-tab" id="shortcuts-tab" tabindex="0">
                             🏁 &nbsp; Shortcuts
                         </button>
                     </li>
                 </ul>
             </nav>
             <div class="settings-options">
-                <div class="appearance-tab">
+                <div id="appearance-options" style="display: none">
                     <form class="form">
                         <div id="setting-background-image" style="align-items: center">
                             <div>Background Image</div>
-                            <button type="button">Remove</button>
-                            <input
+                            <button type="button">Remove</button
+                            ><input
                                 id="input-background-image"
                                 type="file"
                                 accept="image/*"
                                 style="display: none"
                             />
+                        </div>
+                    </form>
+                </div>
+                <div id="shortcuts-options" style="display: none">
+                    <form class="form">
+                        <div id="setting-alignment-shortcuts" style="align-items: center">
+                            <label for="alignment-shortcuts">Align Shortcuts</label
+                            ><select id="input-align-shortcuts" name="alignments">
+                                <option value="Center">Center</option>
+                                <option value="Left">Left</option>
+                                <option value="Right">Right</option>
+                            </select>
                         </div>
                     </form>
                 </div>
