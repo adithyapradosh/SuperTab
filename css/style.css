@@ -5,11 +5,11 @@
 
     --color-accent-h: 0;
     --color-accent-s: 0%;
-    --color-accent-l: 90%;
+    --color-accent-l: 50%;
 
-    --color-background-h: 227;
-    --color-background-s: 16%;
-    --color-background-l: 11%;
+    --color-background-h: 0;
+    --color-background-s: 0%;
+    --color-background-l: 10%;
 
     font-size: calc(14 / 16 * 1rem);
 }
@@ -262,9 +262,9 @@ body {
         var(--color-background-h),
         var(--color-background-s),
         calc(var(--color-background-l) + 3%),
-        0.75
+        0.9
     );
-    backdrop-filter: blur(25px);
+    backdrop-filter: blur(10px);
     box-shadow: 0 1vw 1vw hsla(0, 0%, 0%, 0.05),
         0 1.5vw 1.5vw hsla(0, 0%, 0%, 0.05), 0 2vw 2vw hsla(0, 0%, 0%, 0.05),
         0 2.5vw 2.5vw hsla(0, 0%, 0%, 0.05), 0 3vw 3vw hsla(0, 0%, 0%, 0.05),
@@ -349,7 +349,7 @@ body {
         0.25
     );
     padding: 1rem 1rem 0 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     border-radius: 1rem;
 }
 

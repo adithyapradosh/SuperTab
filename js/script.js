@@ -218,7 +218,7 @@ $(document).ready(function () {
 	})
 
 	function updateShortcutsAlignmentSelector() {
-		if ((localStorage, shortcutsAlignment))
+		if (localStorage.shortcutsAlignment)
 			$('#input-align-shortcuts').val(localStorage.shortcutsAlignment)
 	}
 
@@ -237,48 +237,57 @@ $(document).ready(function () {
 	})
 
 	function updateColors() {
-		document.documentElement.style.setProperty(
-			'--color-primary-h',
-			JSON.parse(localStorage.colorPrimary).h
-		)
-		document.documentElement.style.setProperty(
-			'--color-primary-s',
-			JSON.parse(localStorage.colorPrimary).s
-		)
-		document.documentElement.style.setProperty(
-			'--color-primary-l',
-			JSON.parse(localStorage.colorPrimary).l
-		)
-		document.documentElement.style.setProperty(
-			'--color-accent-h',
-			JSON.parse(localStorage.colorAccent).h
-		)
-		document.documentElement.style.setProperty(
-			'--color-accent-s',
-			JSON.parse(localStorage.colorAccent).s
-		)
-		document.documentElement.style.setProperty(
-			'--color-accent-l',
-			JSON.parse(localStorage.colorAccent).l
-		)
-		document.documentElement.style.setProperty(
-			'--color-background-h',
-			JSON.parse(localStorage.colorBackground).h
-		)
-		document.documentElement.style.setProperty(
-			'--color-background-s',
-			JSON.parse(localStorage.colorBackground).s
-		)
-		document.documentElement.style.setProperty(
-			'--color-background-l',
-			JSON.parse(localStorage.colorBackground).l
-		)
+		if (localStorage.colorPrimary) {
+			document.documentElement.style.setProperty(
+				'--color-primary-h',
+				JSON.parse(localStorage.colorPrimary).h
+			)
+			document.documentElement.style.setProperty(
+				'--color-primary-s',
+				JSON.parse(localStorage.colorPrimary).s
+			)
+			document.documentElement.style.setProperty(
+				'--color-primary-l',
+				JSON.parse(localStorage.colorPrimary).l
+			)
+		}
+		if (localStorage.colorAccent) {
+			document.documentElement.style.setProperty(
+				'--color-accent-h',
+				JSON.parse(localStorage.colorAccent).h
+			)
+			document.documentElement.style.setProperty(
+				'--color-accent-s',
+				JSON.parse(localStorage.colorAccent).s
+			)
+			document.documentElement.style.setProperty(
+				'--color-accent-l',
+				JSON.parse(localStorage.colorAccent).l
+			)
+		}
+		if (localStorage.colorBackground) {
+			document.documentElement.style.setProperty(
+				'--color-background-h',
+				JSON.parse(localStorage.colorBackground).h
+			)
+			document.documentElement.style.setProperty(
+				'--color-background-s',
+				JSON.parse(localStorage.colorBackground).s
+			)
+			document.documentElement.style.setProperty(
+				'--color-background-l',
+				JSON.parse(localStorage.colorBackground).l
+			)
+		}
 	}
 	updateColors()
 
-	$('#input-color-primary').val(JSON.parse(localStorage.colorPrimary).hex)
-	$('#input-color-accent').val(JSON.parse(localStorage.colorAccent).hex)
-	$('#input-color-background').val(JSON.parse(localStorage.colorBackground).hex)
+	if (localStorage.colorPrimary)
+		$('#input-color-primary').val(JSON.parse(localStorage.colorPrimary).hex)
+	if (localStorage.colorAccent)
+		$('#input-color-accent').val(JSON.parse(localStorage.colorAccent).hex)
+	if (localStorage.colorBackground)
+		$('#input-color-background').val(JSON.parse(localStorage.colorBackground).hex)
 })
 
 /* Function Definitions */
