@@ -218,8 +218,67 @@ $(document).ready(function () {
 	})
 
 	function updateShortcutsAlignmentSelector() {
-		$('#input-align-shortcuts').val(localStorage.shortcutsAlignment)
+		if ((localStorage, shortcutsAlignment))
+			$('#input-align-shortcuts').val(localStorage.shortcutsAlignment)
 	}
+
+	// Change Colors
+	$(document).on('change', '#input-color-primary', function () {
+		localStorage.colorPrimary = JSON.stringify(hexToHSL($(this).val()))
+		updateColors()
+	})
+	$(document).on('change', '#input-color-accent', function () {
+		localStorage.colorAccent = JSON.stringify(hexToHSL($(this).val()))
+		updateColors()
+	})
+	$(document).on('change', '#input-color-background', function () {
+		localStorage.colorBackground = JSON.stringify(hexToHSL($(this).val()))
+		updateColors()
+	})
+
+	function updateColors() {
+		document.documentElement.style.setProperty(
+			'--color-primary-h',
+			JSON.parse(localStorage.colorPrimary).h
+		)
+		document.documentElement.style.setProperty(
+			'--color-primary-s',
+			JSON.parse(localStorage.colorPrimary).s
+		)
+		document.documentElement.style.setProperty(
+			'--color-primary-l',
+			JSON.parse(localStorage.colorPrimary).l
+		)
+		document.documentElement.style.setProperty(
+			'--color-accent-h',
+			JSON.parse(localStorage.colorAccent).h
+		)
+		document.documentElement.style.setProperty(
+			'--color-accent-s',
+			JSON.parse(localStorage.colorAccent).s
+		)
+		document.documentElement.style.setProperty(
+			'--color-accent-l',
+			JSON.parse(localStorage.colorAccent).l
+		)
+		document.documentElement.style.setProperty(
+			'--color-background-h',
+			JSON.parse(localStorage.colorBackground).h
+		)
+		document.documentElement.style.setProperty(
+			'--color-background-s',
+			JSON.parse(localStorage.colorBackground).s
+		)
+		document.documentElement.style.setProperty(
+			'--color-background-l',
+			JSON.parse(localStorage.colorBackground).l
+		)
+	}
+	updateColors()
+
+	$('#input-color-primary').val(JSON.parse(localStorage.colorPrimary).hex)
+	$('#input-color-accent').val(JSON.parse(localStorage.colorAccent).hex)
+	$('#input-color-background').val(JSON.parse(localStorage.colorBackground).hex)
 })
 
 /* Function Definitions */
@@ -253,20 +312,67 @@ function loadShortcuts() {
 	}
 }
 
-/* Legacy */
+// Update shortcuts data in Local Storage
+function updateShortcuts() {
+	var shortcuts = new Array()
+	$('.shortcut').each(function (i) {
+		shortcuts[i] = {
+			name: $(this).attr('name'),
+			url: $(this).attr('href'),
+			icon: $(this).children().attr('src'),
+		}
+	})
+	localStorage.shortcuts = JSON.stringify(shortcuts)
+}
 
-// // Update shortcuts data in Local Storage
-// function updateShortcuts() {
-// 	var shortcuts = new Array()
-// 	$('.shortcut').each(function (i) {
-// 		shortcuts[i] = {
-// 			name: $(this).attr('name'),
-// 			url: $(this).attr('href'),
-// 			icon: $(this).children().attr('src'),
-// 		}
-// 	})
-// 	localStorage.shortcuts = JSON.stringify(shortcuts)
-// }
+// HEX to HSL Color space
+function hexToHSL(H) {
+	// Convert hex to RGB first
+	let r = 0,
+		g = 0,
+		b = 0
+	if (H.length == 4) {
+		r = '0x' + H[1] + H[1]
+		g = '0x' + H[2] + H[2]
+		b = '0x' + H[3] + H[3]
+	} else if (H.length == 7) {
+		r = '0x' + H[1] + H[2]
+		g = '0x' + H[3] + H[4]
+		b = '0x' + H[5] + H[6]
+	}
+	// Then to HSL
+	r /= 255
+	g /= 255
+	b /= 255
+	let cmin = Math.min(r, g, b),
+		cmax = Math.max(r, g, b),
+		delta = cmax - cmin,
+		h = 0,
+		s = 0,
+		l = 0
+
+	if (delta == 0) h = 0
+	else if (cmax == r) h = ((g - b) / delta) % 6
+	else if (cmax == g) h = (b - r) / delta + 2
+	else h = (r - g) / delta + 4
+
+	h = Math.round(h * 60)
+
+	if (h < 0) h += 360
+
+	l = (cmax + cmin) / 2
+	s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1))
+	s = +(s * 100).toFixed(1)
+	l = +(l * 100).toFixed(1)
+
+	h = h.toString()
+	s = s.toString() + '%'
+	l = l.toString() + '%'
+
+	return { h: h, s: s, l: l, hex: H }
+}
+
+/* Legacy */
 
 // // Create DOM elements
 // function nodeMaker(node, key) {

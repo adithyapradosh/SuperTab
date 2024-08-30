@@ -71,6 +71,25 @@
                             />
                         </div>
                     </form>
+                    <form class="settings-form">
+                        <div class="settings-form-header">Colors</div>
+                        <div class="setting" id="setting-color-primary" style="align-items: center">
+                            <div>Primary color</div>
+                            <input type="color" id="input-color-primary" value="#ffffff" />
+                        </div>
+                        <div class="setting" id="setting-color-accent" style="align-items: center">
+                            <div>Accent color</div>
+                            <input type="color" id="input-color-accent" value="#ffffff" />
+                        </div>
+                        <div
+                            class="setting"
+                            id="setting-color-background"
+                            style="align-items: center"
+                        >
+                            <div>Background color</div>
+                            <input type="color" id="input-color-background" value="#111111" />
+                        </div>
+                    </form>
                 </div>
                 <div id="shortcuts-options" style="display: none">
                     <form class="settings-form">
@@ -82,7 +101,7 @@
                         >
                             <label for="alignment-shortcuts">Alignment</label>
                             <select id="input-align-shortcuts" name="alignments">
-                                <option value="Center">Center</option>
+                                <option selected="selected" value="Center">Center</option>
                                 <option value="Left">Left</option>
                                 <option value="Right">Right</option>
                             </select>

@@ -1,15 +1,15 @@
 :root {
-    --color-background-h: 227;
-    --color-background-s: 16%;
-    --color-background-l: 11%;
-
     --color-primary-h: 0;
     --color-primary-s: 0%;
     --color-primary-l: 90%;
 
-    --color-text-h: 0;
-    --color-text-s: 0%;
-    --color-text-l: 90%;
+    --color-accent-h: 0;
+    --color-accent-s: 0%;
+    --color-accent-l: 90%;
+
+    --color-background-h: 227;
+    --color-background-s: 16%;
+    --color-background-l: 11%;
 
     font-size: calc(14 / 16 * 1rem);
 }
@@ -85,7 +85,11 @@ body {
         var(--color-background-l)
     );
     background-size: cover;
-    color: hsl(var(--color-text-h), var(--color-text-s), var(--color-text-l));
+    color: hsl(
+        var(--color-primary-h),
+        var(--color-primary-s),
+        var(--color-primary-l)
+    );
     overflow: hidden;
     font-family: sans-serif;
     font-size: 100%;
@@ -113,9 +117,9 @@ body {
     justify-content: center;
     align-items: center;
     background-color: hsl(
-        var(--color-text-h),
-        var(--color-text-s),
-        var(--color-text-l),
+        var(--color-primary-h),
+        var(--color-primary-s),
+        var(--color-primary-l),
         0.15
     );
     border-radius: 1.5rem;
@@ -125,9 +129,9 @@ body {
 }
 .shortcut:hover {
     background-color: hsl(
-        var(--color-text-h),
-        var(--color-text-s),
-        var(--color-text-l),
+        var(--color-primary-h),
+        var(--color-primary-s),
+        var(--color-primary-l),
         0.25
     );
     transform: translateY(-3px);
@@ -151,7 +155,11 @@ body {
     position: absolute;
     bottom: -1.5rem;
     width: 5rem;
-    color: hsl(var(--color-text-h), var(--color-text-s), var(--color-text-l));
+    color: hsl(
+        var(--color-primary-h),
+        var(--color-primary-s),
+        var(--color-primary-l)
+    );
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
@@ -272,6 +280,7 @@ body {
     border-width: 1px;
     border-color: rgba(255, 255, 255, 0.05);
     font-size: 1rem;
+    font-weight: bold;
     overflow: scroll;
 }
 
@@ -306,9 +315,9 @@ body {
     position: absolute;
     left: 1rem;
     background-color: hsl(
-        var(--color-primary-h),
-        var(--color-primary-s),
-        var(--color-primary-l),
+        var(--color-accent-h),
+        var(--color-accent-s),
+        var(--color-accent-l),
         0.75
     );
     border-radius: 1rem;
@@ -351,13 +360,58 @@ body {
 }
 
 .settings-options button {
-    background-color: rgb(22, 24, 26);
+    background-color: hsl(
+        var(--color-accent-h),
+        var(--color-accent-s),
+        var(--color-accent-l),
+        0.25
+    );
     padding: 0.5rem 0.7rem;
     border-radius: 0.35rem;
 }
 
 .settings-options select {
-    background-color: rgb(22, 24, 26);
+    background-color: hsl(
+        var(--color-accent-h),
+        var(--color-accent-s),
+        var(--color-accent-l),
+        0.25
+    );
     padding: 0.5rem 0.7rem;
     border-radius: 0.35rem;
+}
+
+.settings-options input[type="color"] {
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border-radius: 50%;
+    border: none;
+}
+.settings-options input[type="color"]::-webkit-color-swatch {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border-width: 0.3rem;
+    border-color: hsl(
+        var(--color-accent-h),
+        var(--color-accent-s),
+        var(--color-accent-l)
+    );
+}
+.settings-options input[type="color"]::-moz-color-swatch {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border-width: 0.3rem;
+    border-color: hsl(
+        var(--color-accent-h),
+        var(--color-accent-s),
+        var(--color-accent-l)
+    );
 }
