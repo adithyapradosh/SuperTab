@@ -8,11 +8,6 @@
         <link rel="stylesheet" href="../css/style.css" />
     </head>
     <body>
-        <div class="clock">
-            <div class="time"></div>
-            <div class="day"></div>
-        </div>
-
         <div class="shortcut-trash">
             <svg
                 width="100%"
@@ -59,9 +54,14 @@
             </nav>
             <div class="settings-options">
                 <div id="appearance-options" style="display: none">
-                    <form class="form">
-                        <div id="setting-background-image" style="align-items: center">
-                            <div>Background Image</div>
+                    <form class="settings-form">
+                        <div class="settings-form-header">Background Image</div>
+                        <div
+                            class="setting"
+                            id="setting-background-image"
+                            style="align-items: center"
+                        >
+                            <div>Change Image</div>
                             <button type="button">Remove</button
                             ><input
                                 id="input-background-image"
@@ -73,10 +73,15 @@
                     </form>
                 </div>
                 <div id="shortcuts-options" style="display: none">
-                    <form class="form">
-                        <div id="setting-alignment-shortcuts" style="align-items: center">
-                            <label for="alignment-shortcuts">Align Shortcuts</label
-                            ><select id="input-align-shortcuts" name="alignments">
+                    <form class="settings-form">
+                        <div class="settings-form-header">Layout</div>
+                        <div
+                            class="setting"
+                            id="setting-alignment-shortcuts"
+                            style="align-items: center"
+                        >
+                            <label for="alignment-shortcuts">Alignment</label>
+                            <select id="input-align-shortcuts" name="alignments">
                                 <option value="Center">Center</option>
                                 <option value="Left">Left</option>
                                 <option value="Right">Right</option>

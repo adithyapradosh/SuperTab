@@ -1,11 +1,6 @@
 $(document).ready(function () {
-	/* Load Settings */
-
-	/* Clock */
-	clockUpdate()
-	setInterval(clockUpdate, 1000)
-
 	/* Shortcuts */
+
 	loadShortcuts()
 
 	// Drag Shortcuts
@@ -125,14 +120,14 @@ $(document).ready(function () {
 		}
 	})
 
-	//Close settings when esc key is hit
+	// Close settings when esc key is hit
 	$(document).keydown(function (event) {
 		if (event.which === 27) {
 			closeSettings()
 		}
 	})
 
-	//Settings Tabs
+	// Settings Tabs
 	$('.settings-tab').focus(function (event) {
 		$(this).click()
 
@@ -229,39 +224,6 @@ $(document).ready(function () {
 
 /* Function Definitions */
 
-// Update time for clock
-function clockUpdate() {
-	var clock = new Date()
-	var hour = clock.getHours()
-	var min = clock.getMinutes()
-	var day = clock.getDay()
-	var date = clock.getDate()
-	var month = clock.getMonth()
-	var monthIndex = [
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December',
-	]
-	var dayIndex = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-	if (hour > 12) {
-		hour = hour - 12
-	}
-	if (min < 10) {
-		min = '0' + min
-	}
-	$('.time').html(hour + ':' + min)
-	$('.day').html(dayIndex[day] + ', ' + date + ' ' + monthIndex[month])
-}
-
 // Load shortcuts on page load from Local Storage
 function loadShortcuts() {
 	if (localStorage.shortcuts) {
@@ -290,6 +252,8 @@ function loadShortcuts() {
 		}
 	}
 }
+
+/* Legacy */
 
 // // Update shortcuts data in Local Storage
 // function updateShortcuts() {

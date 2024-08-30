@@ -20,16 +20,6 @@
     outline: none;
 }
 
-/* select {
-    padding: 0.3rem 0.5rem;
-    margin-top: -0.3rem;
-    color: hsl(var(--color-text-h), var(--color-text-s), var(--color-text-l));
-    background-color: rgb(22, 24, 26);
-    border: none;
-    border-radius: 0.35rem;
-    font-size: inherit;
-} */
-
 select {
     display: block;
     background: none;
@@ -123,21 +113,21 @@ body {
     justify-content: center;
     align-items: center;
     background-color: hsl(
-        var(--color-background-h),
-        var(--color-background-s),
-        calc(var(--color-background-l) + 50%),
-        0.25
+        var(--color-text-h),
+        var(--color-text-s),
+        var(--color-text-l),
+        0.15
     );
-    border-radius: 25%;
+    border-radius: 1.5rem;
     text-decoration: none;
     transition: background-color 250ms ease-in, transform 250ms ease-in;
     cursor: pointer;
 }
 .shortcut:hover {
     background-color: hsl(
-        var(--color-background-h),
-        var(--color-background-s),
-        calc(var(--color-background-l) + 100%),
+        var(--color-text-h),
+        var(--color-text-s),
+        var(--color-text-l),
         0.25
     );
     transform: translateY(-3px);
@@ -211,33 +201,8 @@ body {
     }
 }
 
-/* Clock */
-.clock {
-    position: fixed;
-    z-index: 1;
-    bottom: 1vh;
-    right: 1vw;
-    color: hsl(
-        var(--color-primary-h),
-        var(--color-primary-s),
-        var(--color-primary-l),
-        0.75
-    );
-    user-select: none;
-}
-
-.time {
-    font-size: 4rem;
-    text-align: center;
-    line-height: 1;
-}
-.day {
-    font-size: 1.1rem;
-    font-weight: 700;
-    text-align: center;
-}
-
 /* Settigns */
+
 .settings-icon {
     position: fixed;
     bottom: 1vh;
@@ -249,7 +214,6 @@ body {
     width: 2rem;
     height: 2rem;
     padding: 2px;
-    border-radius: 9999px;
     opacity: 0.75;
     fill: hsl(
         var(--color-primary-h),
@@ -297,7 +261,7 @@ body {
         0 1.5vw 1.5vw hsla(0, 0%, 0%, 0.05), 0 2vw 2vw hsla(0, 0%, 0%, 0.05),
         0 2.5vw 2.5vw hsla(0, 0%, 0%, 0.05), 0 3vw 3vw hsla(0, 0%, 0%, 0.05),
         0 3.5vw 3.5vw hsla(0, 0%, 0%, 0.05);
-    border-radius: 2rem;
+    border-radius: 1.5vw;
 }
 
 .settings-nav {
@@ -307,7 +271,7 @@ body {
     border-right: solid;
     border-width: 1px;
     border-color: rgba(255, 255, 255, 0.05);
-    font-size: 1.05rem;
+    font-size: 1rem;
     overflow: scroll;
 }
 
@@ -319,8 +283,9 @@ body {
 
 .settings-nav ul button {
     width: 100%;
-    padding: 0.7rem 0.8rem 0.7rem 0.4rem;
-    border-radius: 0.35rem;
+    padding: 0.7rem 0.8rem 0.9rem 0.7rem;
+    margin-bottom: 0.25rem;
+    border-radius: 0.5vw;
     text-align: left;
 }
 .settings-nav ul button:hover {
@@ -361,7 +326,13 @@ body {
     overflow: scroll;
 }
 
-.settings-options form {
+.settings-options .settings-form-header {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.settings-options .settings-form {
     background-color: hsl(
         var(--color-background-h),
         var(--color-background-s),
@@ -369,11 +340,11 @@ body {
         0.25
     );
     padding: 1rem 1rem 0 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     border-radius: 1rem;
 }
 
-.settings-options form > div {
+.settings-options .settings-form .setting {
     display: flex;
     justify-content: space-between;
     padding-bottom: 1rem;
