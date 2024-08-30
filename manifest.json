@@ -1,15 +1,15 @@
 {
   "name": "SuperTab",
-  "version": "0",
+  "version": "1.0.0",
   "description": "A Minimal and Customisable New Tab Page",
   "manifest_version": 3,
-  "permissions": ["tabs"],
+  "permissions": ["activeTab"],
   "chrome_url_overrides": {
     "newtab": "html/index.html"
   },
   "action": {
     "default_icon": "images/plus-icon.png",
-    "default_title": "New Tab",
+    "default_title": "Add Shortcut",
     "default_popup": "html/popup.html"
   },
   "content_scripts": [
