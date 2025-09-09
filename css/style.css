@@ -110,7 +110,7 @@ body {
 
 .shortcut {
     position: relative;
-    z-index: 0;
+    z-index: 1;
     width: 5rem;
     height: 5rem;
     margin: 2rem 0.75rem 2rem 0.75rem;
@@ -123,7 +123,7 @@ body {
         var(--color-primary-l),
         0.15
     );
-    border-radius: 1.5rem;
+    border-radius: 33%;
     text-decoration: none;
     transition: background-color 250ms ease-in, transform 250ms ease-in;
     cursor: pointer;
@@ -215,8 +215,8 @@ body {
 .settings-icon {
     position: fixed;
     bottom: 1vh;
-    z-index: 1;
-    left: 1vw;
+    z-index: 2;
+    left: 1vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -251,7 +251,7 @@ body {
 
 .settings-pane {
     display: none;
-    z-index: 2;
+    z-index: 3;
     width: 54vw;
     height: 70vh;
     min-width: fit-content;
@@ -265,12 +265,12 @@ body {
         calc(var(--color-background-l) + 3%),
         0.9
     );
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     box-shadow: 0 1vw 1vw hsla(0, 0%, 0%, 0.05),
         0 1.5vw 1.5vw hsla(0, 0%, 0%, 0.05), 0 2vw 2vw hsla(0, 0%, 0%, 0.05),
         0 2.5vw 2.5vw hsla(0, 0%, 0%, 0.05), 0 3vw 3vw hsla(0, 0%, 0%, 0.05),
         0 3.5vw 3.5vw hsla(0, 0%, 0%, 0.05);
-    border-radius: 1.5vw;
+    border-radius: 10px;
 }
 
 .settings-nav {
@@ -295,7 +295,7 @@ body {
     width: 100%;
     padding: 0.7rem 0.8rem 0.9rem 0.7rem;
     margin-bottom: 0.25rem;
-    border-radius: 0.5vw;
+    border-radius: 10px;
     text-align: left;
 }
 .settings-nav ul button:hover {
@@ -321,7 +321,7 @@ body {
         var(--color-accent-l),
         0.75
     );
-    border-radius: 1rem;
+    border-radius: 10px;
     transform: scale(1, 0);
     transition: transform ease-in-out 250ms;
 }
@@ -350,9 +350,10 @@ body {
         calc(var(--color-background-l) - 10%),
         0.25
     );
+    backdrop-filter: blur(5px);
     padding: 1rem 1rem 0 1rem;
     margin-bottom: 2rem;
-    border-radius: 0.5rem;
+    border-radius: 10px;
 }
 
 .settings-options .settings-form .setting {
@@ -369,17 +370,29 @@ body {
         0.25
     );
     padding: 0.5rem 0.7rem;
-    border-radius: 0.35rem;
+    border-radius: 10px;
 }
 
 .settings-options select {
     background-color: hsl(
         var(--color-background-h),
         var(--color-background-s),
-        var(--color-background-l)
+        calc(var(--color-background-l) + 10%),
+        0.9
     );
     padding: 0.5rem 0.7rem;
-    border-radius: 0.35rem;
+    border-radius: 10px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 1vw 1vw hsla(0, 0%, 0%, 0.05),
+        0 1.5vw 1.5vw hsla(0, 0%, 0%, 0.05), 0 2vw 2vw hsla(0, 0%, 0%, 0.05),
+        0 2.5vw 2.5vw hsla(0, 0%, 0%, 0.05), 0 3vw 3vw hsla(0, 0%, 0%, 0.05),
+        0 3.5vw 3.5vw hsla(0, 0%, 0%, 0.05);
+    list-style: none;
+}
+
+.dropdown-options li {
+    padding: 0.5rem 0;
+    cursor: pointer;
 }
 
 .settings-options input[type="color"] {
