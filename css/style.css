@@ -255,8 +255,8 @@ body {
 .settings-pane {
     display: none;
     z-index: 3;
-    width: 54vw;
-    height: 70vh;
+    width: 900px;
+    height: 600px;
     min-width: fit-content;
     position: fixed;
     inset: 0;
@@ -272,7 +272,7 @@ body {
         0 1.5vw 1.5vw hsla(0, 0%, 0%, 0.05), 0 2vw 2vw hsla(0, 0%, 0%, 0.05),
         0 2.5vw 2.5vw hsla(0, 0%, 0%, 0.05), 0 3vw 3vw hsla(0, 0%, 0%, 0.05),
         0 3.5vw 3.5vw hsla(0, 0%, 0%, 0.05);
-    border-radius: 10px;
+    border-radius: 11px;
 }
 
 .settings-nav {
@@ -297,7 +297,7 @@ body {
     width: 100%;
     padding: 0.7rem 0.8rem 0.9rem 0.7rem;
     margin-bottom: 0.25rem;
-    border-radius: 10px;
+    border-radius: 11px;
     text-align: left;
 }
 .settings-nav ul button:hover {
@@ -323,7 +323,7 @@ body {
         var(--overlay-color-accent-l),
         0.75
     );
-    border-radius: 10px;
+    border-radius: 11px;
     transform: scale(1, 0);
     transition: transform ease-in-out 250ms;
 }
@@ -355,7 +355,7 @@ body {
     backdrop-filter: blur(5px);
     padding: 1rem 1rem 0 1rem;
     margin-bottom: 2rem;
-    border-radius: 10px;
+    border-radius: 11px;
 }
 
 .settings-options .settings-form .setting {
@@ -372,7 +372,7 @@ body {
         0.5
     );
     padding: 0.5rem 0.7rem;
-    border-radius: 10px;
+    border-radius: 11px;
 }
 
 .settings-options button:hover {
@@ -471,7 +471,7 @@ body {
         0.5
     );
     padding: 0.5rem 0.7rem;
-    border-radius: 10px;
+    border-radius: 11px;
     border: none;
     backdrop-filter: blur(15px);
     cursor: pointer;
@@ -522,7 +522,7 @@ body {
         var(--overlay-color-primary-l)
     );
     border: none;
-    border-radius: 10px;
+    border-radius: 11px;
     box-shadow: 0 1vw 1vw hsla(0, 0%, 0%, 0.05),
         0 1.5vw 1.5vw hsla(0, 0%, 0%, 0.05), 0 2vw 2vw hsla(0, 0%, 0%, 0.05),
         0 2.5vw 2.5vw hsla(0, 0%, 0%, 0.05), 0 3vw 3vw hsla(0, 0%, 0%, 0.05),
