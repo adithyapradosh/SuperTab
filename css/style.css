@@ -1,15 +1,27 @@
 :root {
-    --color-primary-h: 0;
-    --color-primary-s: 0%;
-    --color-primary-l: 90%;
+    --icon-color-primary-h: 0;
+    --icon-color-primary-s: 0%;
+    --icon-color-primary-l: 90%;
 
-    --color-accent-h: 0;
-    --color-accent-s: 0%;
-    --color-accent-l: 50%;
+    --icon-color-accent-h: 0;
+    --icon-color-accent-s: 0%;
+    --icon-color-accent-l: 50%;
 
-    --color-background-h: 0;
-    --color-background-s: 0%;
-    --color-background-l: 10%;
+    --icon-color-background-h: 0;
+    --icon-color-background-s: 0%;
+    --icon-color-background-l: 10%;
+
+    --overlay-color-primary-h: 0;
+    --overlay-color-primary-s: 0%;
+    --overlay-color-primary-l: 90%;
+
+    --overlay-color-accent-h: 0;
+    --overlay-color-accent-s: 0%;
+    --overlay-color-accent-l: 50%;
+
+    --overlay-color-background-h: 0;
+    --overlay-color-background-s: 0%;
+    --overlay-color-background-l: 10%;
 
     font-size: calc(14 / 16 * 1rem);
 }
@@ -33,17 +45,17 @@
     border-radius: 9999px;
     background-clip: padding-box;
     background-color: hsla(
-        var(--color-primary-h),
-        var(--color-primary-s),
-        var(--color-primary-l),
+        var(--overlay-color-primary-h),
+        var(--overlay-color-primary-s),
+        var(--overlay-color-primary-l),
         0.15
     );
 }
 ::-webkit-scrollbar-thumb:hover {
     background-color: hsl(
-        var(--color-primary-h),
-        var(--color-primary-s),
-        var(--color-primary-l),
+        var(--overlay-color-primary-h),
+        var(--overlay-color-primary-s),
+        var(--overlay-color-primary-l),
         0.25
     );
 }
@@ -58,16 +70,16 @@ body {
     margin: 0;
     padding: 0;
     background-color: hsl(
-        var(--color-background-h),
-        var(--color-background-s),
-        var(--color-background-l)
+        var(--overlay-color-background-h),
+        var(--overlay-color-background-s),
+        var(--overlay-color-background-l)
     );
     background-size: cover;
     background-position: center;
     color: hsl(
-        var(--color-primary-h),
-        var(--color-primary-s),
-        var(--color-primary-l)
+        var(--overlay-color-primary-h),
+        var(--overlay-color-primary-s),
+        var(--overlay-color-primary-l)
     );
     overflow: hidden;
     font-family: sans-serif;
@@ -96,9 +108,9 @@ body {
     justify-content: center;
     align-items: center;
     background-color: hsl(
-        var(--color-primary-h),
-        var(--color-primary-s),
-        var(--color-primary-l),
+        var(--icon-color-background-h),
+        var(--icon-color-background-s),
+        var(--icon-color-background-l),
         0.15
     );
     border-radius: 33%;
@@ -108,18 +120,18 @@ body {
 }
 .shortcut:hover {
     background-color: hsl(
-        var(--color-primary-h),
-        var(--color-primary-s),
-        var(--color-primary-l),
+        var(--icon-color-background-h),
+        var(--icon-color-background-s),
+        var(--icon-color-background-l),
         0.25
     );
     transform: translateY(-3px);
 }
 .shortcut:focus {
     background-color: hsl(
-        var(--color-background-h),
-        var(--color-background-s),
-        calc(var(--color-background-l) + 15%),
+        var(--icon-color-background-h),
+        var(--icon-color-background-s),
+        calc(var(--icon-color-background-l) + 15%),
         0.5
     );
     transform: translateY(-3px);
@@ -135,9 +147,9 @@ body {
     bottom: -1.5rem;
     width: 5rem;
     color: hsl(
-        var(--color-primary-h),
-        var(--color-primary-s),
-        var(--color-primary-l)
+        var(--icon-color-primary-h),
+        var(--icon-color-primary-s),
+        var(--icon-color-primary-l)
     );
     text-align: center;
     white-space: nowrap;
@@ -156,15 +168,15 @@ body {
     padding: 0.75rem;
     border-radius: 50%;
     background-color: hsl(
-        var(--color-background-h),
-        var(--color-background-s),
-        calc(var(--color-background-l) + 15%),
+        var(--overlay-color-background-h),
+        var(--overlay-color-background-s),
+        calc(var(--overlay-color-background-l) + 15%),
         0.6
     );
     fill: hsl(
-        var(--color-primary-h),
-        var(--color-primary-s),
-        var(--color-primary-l),
+        var(--overlay-color-primary-h),
+        var(--overlay-color-primary-s),
+        var(--overlay-color-primary-l),
         0.6
     );
     box-shadow: 0 0 3rem 0.25rem hsla(0, 0%, 0%, 0.5);
@@ -216,26 +228,26 @@ body {
     padding: 2px;
     opacity: 0.75;
     fill: hsl(
-        var(--color-primary-h),
-        var(--color-primary-s),
-        var(--color-primary-l),
+        var(--overlay-color-primary-h),
+        var(--overlay-color-primary-s),
+        var(--overlay-color-primary-l),
         0.5
     );
     cursor: pointer;
 }
 .settings-icon:hover {
     fill: hsl(
-        var(--color-primary-h),
-        var(--color-primary-s),
-        var(--color-primary-l),
+        var(--overlay-color-primary-h),
+        var(--overlay-color-primary-s),
+        var(--overlay-color-primary-l),
         0.75
     );
 }
 .settings-icon:focus {
     fill: hsl(
-        var(--color-primary-h),
-        var(--color-primary-s),
-        var(--color-primary-l),
+        var(--overlay-color-primary-h),
+        var(--overlay-color-primary-s),
+        var(--overlay-color-primary-l),
         0.75
     );
 }
@@ -250,9 +262,9 @@ body {
     inset: 0;
     margin: auto;
     background-color: hsl(
-        var(--color-background-h),
-        var(--color-background-s),
-        calc(var(--color-background-l) + 3%),
+        var(--overlay-color-background-h),
+        var(--overlay-color-background-s),
+        calc(var(--overlay-color-background-l) + 3%),
         0.9
     );
     backdrop-filter: blur(15px);
@@ -290,9 +302,9 @@ body {
 }
 .settings-nav ul button:hover {
     background-color: hsl(
-        var(--color-primary-h),
-        var(--color-primary-s),
-        var(--color-primary-l),
+        var(--overlay-color-primary-h),
+        var(--overlay-color-primary-s),
+        var(--overlay-color-primary-l),
         0.1
     );
     cursor: pointer;
@@ -306,9 +318,9 @@ body {
     position: absolute;
     left: 1rem;
     background-color: hsl(
-        var(--color-accent-h),
-        var(--color-accent-s),
-        var(--color-accent-l),
+        var(--overlay-color-accent-h),
+        var(--overlay-color-accent-s),
+        var(--overlay-color-accent-l),
         0.75
     );
     border-radius: 10px;
@@ -335,9 +347,9 @@ body {
 
 .settings-options .settings-form {
     background-color: hsl(
-        var(--color-background-h),
-        var(--color-background-s),
-        calc(var(--color-background-l) - 10%),
+        var(--overlay-color-background-h),
+        var(--overlay-color-background-s),
+        calc(var(--overlay-color-background-l) - 10%),
         0.25
     );
     backdrop-filter: blur(5px);
@@ -354,9 +366,9 @@ body {
 
 .settings-options button {
     background-color: hsl(
-        var(--color-background-h),
-        var(--color-background-s),
-        calc(var(--color-background-l) + 10%),
+        var(--overlay-color-background-h),
+        var(--overlay-color-background-s),
+        calc(var(--overlay-color-background-l) + 10%),
         0.5
     );
     padding: 0.5rem 0.7rem;
@@ -365,9 +377,9 @@ body {
 
 .settings-options button:hover {
     background-color: hsl(
-        var(--color-background-h),
-        var(--color-background-s),
-        calc(var(--color-background-l) + 20%),
+        var(--overlay-color-background-h),
+        var(--overlay-color-background-s),
+        calc(var(--overlay-color-background-l) + 20%),
         0.5
     );
 }
@@ -384,40 +396,64 @@ body {
     height: 1.5rem;
     border: 5px solid
         hsl(
-            var(--color-background-h),
-            var(--color-background-s),
-            calc(var(--color-background-l) + 10%)
+            var(--overlay-color-background-h),
+            var(--overlay-color-background-s),
+            calc(var(--overlay-color-background-l) + 10%)
         );
     border-radius: 50%;
     background-color: hsl(
-        var(--color-primary-h),
-        var(--color-primary-s),
-        var(--color-primary-l)
+        var(--overlay-color-primary-h),
+        var(--overlay-color-primary-s),
+        var(--overlay-color-primary-l)
     );
     cursor: pointer;
 }
 
-#color-picker-button-primary {
+#icon-color-picker-button-primary {
     background-color: hsl(
-        var(--color-primary-h),
-        var(--color-primary-s),
-        var(--color-primary-l)
+        var(--icon-color-primary-h),
+        var(--icon-color-primary-s),
+        var(--icon-color-primary-l)
     );
 }
 
-#color-picker-button-accent {
+#icon-color-picker-button-accent {
     background-color: hsl(
-        var(--color-accent-h),
-        var(--color-accent-s),
-        var(--color-accent-l)
+        var(--icon-color-accent-h),
+        var(--icon-color-accent-s),
+        var(--icon-color-accent-l)
     );
 }
 
-#color-picker-button-background {
+#icon-color-picker-button-background {
     background-color: hsl(
-        var(--color-background-h),
-        var(--color-background-s),
-        var(--color-background-l)
+        var(--icon-color-background-h),
+        var(--icon-color-background-s),
+        var(--icon-color-background-l)
+    );
+}
+
+#overlay-color-picker-button-primary {
+    background-color: hsl(
+        var(--overlay-color-primary-h),
+        var(--overlay-color-primary-s),
+        var(--overlay-color-primary-l)
+    );
+}
+
+#overlay-color-picker-button-accent {
+    background-color: hsl(
+        var(--overlay-color-accent-h),
+        var(--overlay-color-accent-s),
+        var(--overlay-color-accent-l)
+    );
+}
+
+#overlay-color-picker-button-background {
+    background-color: hsl(
+        var(--overlay-color-background-h),
+        var(--overlay-color-background-s),
+        var(--overlay-color-background-l)
     );
 }
 
@@ -429,9 +465,9 @@ body {
 .setting select {
     width: 7rem;
     background-color: hsl(
-        var(--color-background-h),
-        var(--color-background-s),
-        calc(var(--color-background-l) + 10%),
+        var(--overlay-color-background-h),
+        var(--overlay-color-background-s),
+        calc(var(--overlay-color-background-l) + 10%),
         0.5
     );
     padding: 0.5rem 0.7rem;
@@ -444,9 +480,9 @@ body {
 .setting select:hover,
 .setting select:focus {
     background: hsl(
-        var(--color-background-h),
-        var(--color-background-s),
-        calc(var(--color-background-l) + 20%),
+        var(--overlay-color-background-h),
+        var(--overlay-color-background-s),
+        calc(var(--overlay-color-background-l) + 20%),
         0.5
     );
 }
@@ -460,9 +496,9 @@ body {
 
 .setting select::picker-icon {
     color: hsl(
-        var(--color-background-h),
-        var(--color-background-s),
-        calc(var(--color-background-l) + 50%),
+        var(--overlay-color-background-h),
+        var(--overlay-color-background-s),
+        calc(var(--overlay-color-background-l) + 50%),
         0.9
     );
 }
@@ -474,16 +510,16 @@ body {
 .setting ::picker(select) {
     top: calc(anchor(bottom) + 0.3rem);
     background: hsl(
-        var(--color-background-h),
-        var(--color-background-s),
-        calc(var(--color-background-l) + 10%),
+        var(--overlay-color-background-h),
+        var(--overlay-color-background-s),
+        calc(var(--overlay-color-background-l) + 10%),
         0.9
     );
     backdrop-filter: blur(15px);
     color: hsl(
-        var(--color-primary-h),
-        var(--color-primary-s),
-        var(--color-primary-l)
+        var(--overlay-color-primary-h),
+        var(--overlay-color-primary-s),
+        var(--overlay-color-primary-l)
     );
     border: none;
     border-radius: 10px;

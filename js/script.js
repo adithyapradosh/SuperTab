@@ -223,71 +223,126 @@ $(document).ready(function () {
 	}
 
 	// Change Colors
-	$(document).on('change', '#input-color-primary', function () {
-		localStorage.colorPrimary = JSON.stringify(hexToHSL($(this).val()))
+	$(document).on('change', '#input-icon-color-primary', function () {
+		localStorage.iconColorPrimary = JSON.stringify(hexToHSL($(this).val()))
 		updateColors()
 	})
-	$(document).on('change', '#input-color-accent', function () {
-		localStorage.colorAccent = JSON.stringify(hexToHSL($(this).val()))
+	$(document).on('change', '#input-icon-color-accent', function () {
+		localStorage.iconColorAccent = JSON.stringify(hexToHSL($(this).val()))
 		updateColors()
 	})
-	$(document).on('change', '#input-color-background', function () {
-		localStorage.colorBackground = JSON.stringify(hexToHSL($(this).val()))
+	$(document).on('change', '#input-icon-color-background', function () {
+		localStorage.iconColorBackground = JSON.stringify(hexToHSL($(this).val()))
+		updateColors()
+	})
+	$(document).on('change', '#input-overlay-color-primary', function () {
+		localStorage.overlayColorPrimary = JSON.stringify(hexToHSL($(this).val()))
+		updateColors()
+	})
+	$(document).on('change', '#input-overlay-color-accent', function () {
+		localStorage.overlayColorAccent = JSON.stringify(hexToHSL($(this).val()))
+		updateColors()
+	})
+	$(document).on('change', '#input-overlay-color-background', function () {
+		localStorage.overlayColorBackground = JSON.stringify(hexToHSL($(this).val()))
 		updateColors()
 	})
 
 	function updateColors() {
-		if (localStorage.colorPrimary) {
+		if (localStorage.iconColorPrimary) {
+			$('#input-icon-color-primary').val(JSON.parse(localStorage.iconColorPrimary).hex)
 			document.documentElement.style.setProperty(
-				'--color-primary-h',
-				JSON.parse(localStorage.colorPrimary).h
+				'--icon-color-primary-h',
+				JSON.parse(localStorage.iconColorPrimary).h
 			)
 			document.documentElement.style.setProperty(
-				'--color-primary-s',
-				JSON.parse(localStorage.colorPrimary).s
+				'--icon-color-primary-s',
+				JSON.parse(localStorage.iconColorPrimary).s
 			)
 			document.documentElement.style.setProperty(
-				'--color-primary-l',
-				JSON.parse(localStorage.colorPrimary).l
-			)
-		}
-		if (localStorage.colorAccent) {
-			document.documentElement.style.setProperty(
-				'--color-accent-h',
-				JSON.parse(localStorage.colorAccent).h
-			)
-			document.documentElement.style.setProperty(
-				'--color-accent-s',
-				JSON.parse(localStorage.colorAccent).s
-			)
-			document.documentElement.style.setProperty(
-				'--color-accent-l',
-				JSON.parse(localStorage.colorAccent).l
+				'--icon-color-primary-l',
+				JSON.parse(localStorage.iconColorPrimary).l
 			)
 		}
-		if (localStorage.colorBackground) {
+		if (localStorage.iconColorAccent) {
+			$('#input-icon-color-accent').val(JSON.parse(localStorage.iconColorAccent).hex)
 			document.documentElement.style.setProperty(
-				'--color-background-h',
-				JSON.parse(localStorage.colorBackground).h
+				'--icon-color-accent-h',
+				JSON.parse(localStorage.iconColorAccent).h
 			)
 			document.documentElement.style.setProperty(
-				'--color-background-s',
-				JSON.parse(localStorage.colorBackground).s
+				'--icon-color-accent-s',
+				JSON.parse(localStorage.iconColorAccent).s
 			)
 			document.documentElement.style.setProperty(
-				'--color-background-l',
-				JSON.parse(localStorage.colorBackground).l
+				'--icon-color-accent-l',
+				JSON.parse(localStorage.iconColorAccent).l
+			)
+		}
+		if (localStorage.iconColorBackground) {
+			$('#input-icon-color-background').val(JSON.parse(localStorage.iconColorBackground).hex)
+			document.documentElement.style.setProperty(
+				'--icon-color-background-h',
+				JSON.parse(localStorage.iconColorBackground).h
+			)
+			document.documentElement.style.setProperty(
+				'--icon-color-background-s',
+				JSON.parse(localStorage.iconColorBackground).s
+			)
+			document.documentElement.style.setProperty(
+				'--icon-color-background-l',
+				JSON.parse(localStorage.iconColorBackground).l
+			)
+		}
+		if (localStorage.overlayColorPrimary) {
+			$('#input-overlay-color-primary').val(JSON.parse(localStorage.overlayColorPrimary).hex)
+			document.documentElement.style.setProperty(
+				'--overlay-color-primary-h',
+				JSON.parse(localStorage.overlayColorPrimary).h
+			)
+			document.documentElement.style.setProperty(
+				'--overlay-color-primary-s',
+				JSON.parse(localStorage.overlayColorPrimary).s
+			)
+			document.documentElement.style.setProperty(
+				'--overlay-color-primary-l',
+				JSON.parse(localStorage.overlayColorPrimary).l
+			)
+		}
+		if (localStorage.overlayColorAccent) {
+			$('#input-overlay-color-accent').val(JSON.parse(localStorage.overlayColorAccent).hex)
+			document.documentElement.style.setProperty(
+				'--overlay-color-accent-h',
+				JSON.parse(localStorage.overlayColorAccent).h
+			)
+			document.documentElement.style.setProperty(
+				'--overlay-color-accent-s',
+				JSON.parse(localStorage.overlayColorAccent).s
+			)
+			document.documentElement.style.setProperty(
+				'--overlay-color-accent-l',
+				JSON.parse(localStorage.overlayColorAccent).l
+			)
+		}
+		if (localStorage.overlayColorBackground) {
+			$('#input-overlay-color-background').val(
+				JSON.parse(localStorage.overlayColorBackground).hex
+			)
+			document.documentElement.style.setProperty(
+				'--overlay-color-background-h',
+				JSON.parse(localStorage.overlayColorBackground).h
+			)
+			document.documentElement.style.setProperty(
+				'--overlay-color-background-s',
+				JSON.parse(localStorage.overlayColorBackground).s
+			)
+			document.documentElement.style.setProperty(
+				'--overlay-color-background-l',
+				JSON.parse(localStorage.overlayColorBackground).l
 			)
 		}
 	}
 	updateColors()
-
-	if (localStorage.colorPrimary)
-		$('#input-color-primary').val(JSON.parse(localStorage.colorPrimary).hex)
-	if (localStorage.colorAccent)
-		$('#input-color-accent').val(JSON.parse(localStorage.colorAccent).hex)
-	if (localStorage.colorBackground)
-		$('#input-color-background').val(JSON.parse(localStorage.colorBackground).hex)
 
 	// Color Picker Button
 	$(document).on('click', '.color-picker-button', function () {
