@@ -9,7 +9,7 @@
 
     --icon-color-background-h: 0;
     --icon-color-background-s: 0%;
-    --icon-color-background-l: 10%;
+    --icon-color-background-l: 90%;
 
     --overlay-color-primary-h: 0;
     --overlay-color-primary-s: 0%;
@@ -255,9 +255,8 @@ body {
 .settings-pane {
     display: none;
     z-index: 3;
-    width: 900px;
+    width: 800px;
     height: 600px;
-    min-width: fit-content;
     position: fixed;
     inset: 0;
     margin: auto;
