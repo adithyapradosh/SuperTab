@@ -83,6 +83,8 @@
 
 .settings-shortcut-img > img {
     width: 2.5rem;
+    height: 2.5rem;
+    object-fit: contain;
 }
 
 .shortcuts-settings-form .setting .delete-button {

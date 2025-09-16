@@ -139,6 +139,8 @@ body {
 
 .shortcut img {
     width: 2.5rem;
+    height: 2.5rem;
+    object-fit: contain;
     pointer-events: none;
 }
 
@@ -315,7 +317,7 @@ body {
     height: 1.6rem;
     width: 0.25rem;
     position: absolute;
-    left:0.75rem;
+    left: 0.75rem;
     background-color: hsl(
         var(--overlay-color-accent-h),
         var(--overlay-color-accent-s),
