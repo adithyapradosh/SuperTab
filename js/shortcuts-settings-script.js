@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		if (shortcuts.length != 0) {
 			shortcuts.forEach((shortcut) => {
-				fetch(chrome.runtime.getURL('../html/shortcuts-settings-dom.html'))
+				fetch(chrome.runtime.getURL('html/shortcuts-settings-dom.html'))
 					.then((response) => response.text())
 					.then((html) => {
 						$snippet = $(html)
