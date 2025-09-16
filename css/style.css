@@ -113,7 +113,7 @@ body {
         var(--icon-color-background-l),
         0.15
     );
-    border-radius: 33%;
+    border-radius: 26px;
     text-decoration: none;
     transition: background-color 250ms ease-in, transform 250ms ease-in;
     cursor: pointer;
@@ -271,7 +271,7 @@ body {
         0 1.5vw 1.5vw hsla(0, 0%, 0%, 0.05), 0 2vw 2vw hsla(0, 0%, 0%, 0.05),
         0 2.5vw 2.5vw hsla(0, 0%, 0%, 0.05), 0 3vw 3vw hsla(0, 0%, 0%, 0.05),
         0 3.5vw 3.5vw hsla(0, 0%, 0%, 0.05);
-    border-radius: 11px;
+    border-radius: 26px;
 }
 
 .settings-nav {
@@ -296,7 +296,7 @@ body {
     width: 100%;
     padding: 0.7rem 0.8rem 0.9rem 0.7rem;
     margin-bottom: 0.25rem;
-    border-radius: 11px;
+    border-radius: 16px;
     text-align: left;
 }
 .settings-nav ul button:hover {
@@ -315,7 +315,7 @@ body {
     height: 1.6rem;
     width: 0.25rem;
     position: absolute;
-    left: 1rem;
+    left:0.75rem;
     background-color: hsl(
         var(--overlay-color-accent-h),
         var(--overlay-color-accent-s),
@@ -354,7 +354,7 @@ body {
     backdrop-filter: blur(5px);
     padding: 1rem 1rem 0 1rem;
     margin-bottom: 2rem;
-    border-radius: 11px;
+    border-radius: 16px;
 }
 
 .settings-options .settings-form .setting {
@@ -371,7 +371,7 @@ body {
         0.5
     );
     padding: 0.5rem 0.7rem;
-    border-radius: 11px;
+    border-radius: 16px;
 }
 
 .settings-options button:hover {
@@ -470,7 +470,7 @@ body {
         0.5
     );
     padding: 0.5rem 0.7rem;
-    border-radius: 11px;
+    border-radius: 16px;
     border: none;
     backdrop-filter: blur(15px);
     cursor: pointer;
@@ -521,7 +521,7 @@ body {
         var(--overlay-color-primary-l)
     );
     border: none;
-    border-radius: 11px;
+    border-radius: 16px;
     box-shadow: 0 1vw 1vw hsla(0, 0%, 0%, 0.05),
         0 1.5vw 1.5vw hsla(0, 0%, 0%, 0.05), 0 2vw 2vw hsla(0, 0%, 0%, 0.05),
         0 2.5vw 2.5vw hsla(0, 0%, 0%, 0.05), 0 3vw 3vw hsla(0, 0%, 0%, 0.05),
