@@ -372,7 +372,7 @@ function loadShortcuts() {
 					name: shortcuts[i].name,
 					tabindex: 0,
 					href: shortcuts[i].url,
-					shortcut_id: shortcuts[i].shortcut_id,
+					'data-shortcut-id': shortcuts[i].shortcutId, 
 				})
 				.html(img)
 			var label = $('<div>').addClass('label').html(shortcuts[i].name)
@@ -390,7 +390,7 @@ function updateShortcuts() {
 			name: $(this).attr('name'),
 			url: $(this).attr('href'),
 			icon: $(this).children().attr('src'),
-			shortcut_id: $(this).attr('shortcut_id'),
+			shortcutId: $(this).data('shortcut-id'),
 		}
 	})
 	localStorage.shortcuts = JSON.stringify(shortcuts)

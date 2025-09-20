@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					.then((response) => response.text())
 					.then((html) => {
 						$snippet = $(html)
-						$snippet.attr('setting_id', shortcut.shortcut_id)
+						$snippet.attr('data-setting-id', shortcut.shortcutId)
 						$snippet.find('.field.name input').val(shortcut.name)
 						$snippet.find('.field.url input').val(shortcut.url)
 						$snippet.find('.settings-shortcut-img img').attr('src', shortcut.icon)
@@ -29,24 +29,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// Update Shortcuts on settings change
 	$(document).on('input', '.setting input[type="text"]', function () {
-		const id = $(this).closest('.setting').attr('setting_id')
+		const id = $(this).closest('.setting').data('setting-id')
 		$(this).closest('.setting').find('.update-button').css('display', 'flex')
 	})
 
 	$(document).on('click', '.setting .delete-button', function () {
-		let id = $(this).closest('.setting').attr('setting_id')
-		$('[shortcut_id="' + id + '"]').remove()
+		let id = $(this).closest('.setting').data('setting-id')
+		$('[data-shortcut-id="' + id + '"]').remove()
 		$(this).closest('.setting').css('display', 'none')
 		updateShortcuts()
 	})
 
 	$(document).on('click', '.setting .update-button', function () {
-		let id = $(this).closest('.setting').attr('setting_id')
+		let id = $(this).closest('.setting').data('setting-id')
 		let name = $(this).closest('.setting').find('.name input').val()
 		let url = $(this).closest('.setting').find('.url input').val()
-		$('[shortcut_id="' + id + '"]').attr('name', name)
-		$('[shortcut_id="' + id + '"] .label').html(name)
-		$('[shortcut_id="' + id + '"]').attr('href', url)
+		$('[data-shortcut-id="' + id + '"]').attr('name', name)
+		$('[data-shortcut-id="' + id + '"] .label').html(name)
+		$('[data-shortcut-id="' + id + '"]').attr('href', url)
 
 		updateShortcuts()
 

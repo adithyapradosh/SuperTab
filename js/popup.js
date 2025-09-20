@@ -17,7 +17,7 @@ $(document).ready(function () {
 				shortcuts.push({
 					name: $('#name').val(),
 					url: $('#url').val(),
-					shortcut_id: id,
+					shortcutId: id,
 				})
 				// grab website icon
 				var iconLinks = []

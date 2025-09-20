@@ -1,6 +1,6 @@
 {
   "name": "SuperTab",
-  "version": "2.1.1",
+  "version": "2.1.4",
   "description": "A Minimal and Customisable New Tab Page",
   "manifest_version": 3,
   "permissions": ["activeTab"],
@@ -16,12 +16,6 @@
     {
       "matches": ["<all_urls>"],
       "js": ["js/jquery-3.5.1.min.js", "js/content.js"]
-    }
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": ["html/shortcuts-settings-dom.html"],
-      "matches": ["<all_urls>"]
     }
   ]
 }
