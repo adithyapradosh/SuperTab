@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				canvas.height = this.naturalHeight
 				canvas.width = this.naturalWidth
 				context.drawImage(this, 0, 0)
-				var url = canvas.toDataURL('image/jpeg')
+				var url = canvas.toDataURL('image/*')
 				$(inputElement)
 					.closest('.setting')
 					.find('.settings-shortcut-img img')
