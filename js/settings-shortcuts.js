@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-	// // Load Shortcuts into Settings
+	/* Load Shortcuts into Settings */
 	if (localStorage.shortcuts) {
 		shortcuts = JSON.parse(localStorage.shortcuts)
 
@@ -27,12 +27,50 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 
-	// Update Shortcuts on settings change
+	/* Update Shortcuts on settings change */
+
+	// Display update button on input change
 	$(document).on('input', '.setting input[type="text"]', function () {
-		const id = $(this).closest('.setting').data('setting-id')
 		$(this).closest('.setting').find('.update-button').css('display', 'flex')
 	})
 
+	// Display shortcut image edit button
+	$(document).on('mouseenter', '.settings-shortcut-img', function () {
+		$(this).find('.upload-shortcut-img-button').show()
+	})
+
+	$(document).on('mouseleave', '.settings-shortcut-img', function () {
+		$(this).find('.upload-shortcut-img-button').hide()
+	})
+
+	// Edit shortcut image
+	$(document).on('click', '.upload-shortcut-img-button', function () {
+		$(this).closest('.setting').find('.input-shortcut-image').click()
+	})
+
+	$(document).on('change', '.input-shortcut-image', function () {
+		let inputElement = this
+		if (this.files && this.files[0]) {
+			var img = document.createElement('img')
+			img.src = URL.createObjectURL(this.files[0])
+			img.onload = function () {
+				var canvas = document.createElement('canvas')
+				var context = canvas.getContext('2d')
+				canvas.height = this.naturalHeight
+				canvas.width = this.naturalWidth
+				context.drawImage(this, 0, 0)
+				var url = canvas.toDataURL('image/jpeg')
+				$(inputElement)
+					.closest('.setting')
+					.find('.settings-shortcut-img img')
+					.attr('src', url)
+			}
+			this.value = ''
+		}
+		$(this).closest('.setting').find('.update-button').css('display', 'flex')
+	})
+
+	// Remove shortcut on clicking delete button
 	$(document).on('click', '.setting .delete-button', function () {
 		let id = $(this).closest('.setting').data('setting-id')
 		$('[data-shortcut-id="' + id + '"]').remove()
@@ -40,13 +78,18 @@ document.addEventListener('DOMContentLoaded', () => {
 		updateShortcuts()
 	})
 
+	// Update shortcut on clicking update button
 	$(document).on('click', '.setting .update-button', function () {
 		let id = $(this).closest('.setting').data('setting-id')
 		let name = $(this).closest('.setting').find('.name input').val()
 		let url = $(this).closest('.setting').find('.url input').val()
+		let imgSrc = $(this).closest('.setting').find('.settings-shortcut-img img').attr('src')
 		$('[data-shortcut-id="' + id + '"]').attr('name', name)
-		$('[data-shortcut-id="' + id + '"] .label').html(name)
 		$('[data-shortcut-id="' + id + '"]').attr('href', url)
+		$('[data-shortcut-id="' + id + '"]')
+			.children()
+			.attr('src', imgSrc)
+		$('[data-shortcut-id="' + id + '"] .label').html(name)
 
 		updateShortcuts()
 
